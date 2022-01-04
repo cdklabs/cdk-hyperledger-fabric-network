@@ -117,7 +117,12 @@
   "stability": "stable",
   "jsii": {
     "outdir": "dist",
-    "targets": {},
+    "targets": {
+      "python": {
+        "distName": "cdk-hypderledger-fabric-network",
+        "module": "cdk_hyperledger_fabric_network"
+      }
+    },
     "tsc": {
       "outDir": "lib",
       "rootDir": "src"
