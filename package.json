@@ -1,6 +1,6 @@
 {
   "name": "cdk-hyperledger-fabric-network",
-  "description": "CDK construct to deploy a production-ready Hyperledger Fabric network running on Amazon Managed Blockchain",
+  "description": "CDK construct to deploy a Hyperledger Fabric network running on Amazon Managed Blockchain",
   "repository": {
     "type": "git",
     "url": "https://github.com/aws-samples/cdk-hyperledger-fabric-network.git"

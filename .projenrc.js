@@ -10,7 +10,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   author: 'Jud Neer',
   authorAddress: 'judneer@amazon.com',
   authorOrganizaion: 'Amazon Web Services',
-  description: 'CDK construct to deploy a production-ready Hyperledger Fabric network running on Amazon Managed Blockchain',
+  description: 'CDK construct to deploy a Hyperledger Fabric network running on Amazon Managed Blockchain',
   license: 'MIT-0',
   copyrightOwner: 'Amazon.com, Inc. or its affiliates. All Rights Reserved.',
   defaultReleaseBranch: 'main',
@@ -23,6 +23,10 @@ const project = new awscdk.AwsCdkConstructLibrary({
     'cdk.out',
   ],
   npmignore: [
+    '*.md',
+    '.gitattributes',
+    '.jsii',
+    'cdk.json',
     'cdk.out',
   ],
   scripts: {
