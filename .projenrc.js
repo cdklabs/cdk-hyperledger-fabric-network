@@ -29,11 +29,6 @@ const project = new awscdk.AwsCdkConstructLibrary({
     'cdk.json',
     'cdk.out',
   ],
-  scripts: {
-    'test:deploy': 'cdk deploy --progress events',
-    'test:destroy': 'cdk destroy',
-    'test:synth': 'cdk synth',
-  },
   publishToPypi: {
     distName: 'cdk-hypderledger-fabric-network',
     module: 'cdk_hyperledger_fabric_network',

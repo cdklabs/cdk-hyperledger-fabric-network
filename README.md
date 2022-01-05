@@ -15,11 +15,11 @@ is planned for future releases:
 
 ## Installation
 
-The construct can be installed in a CDK project with the following:
+The construct is available for both TypeScript and Python CDK projects.
+It can be installed with the following:
 
-```bash
-npm install --save cdk-hyperledger-fabric-network
-```
+*  TypeScript: `npm install --save cdk-hyperledger-fabric-network`
+*  Python: `pip3 install cdk-hyperledger-fabric-network`
 
 Note that this construct requires [AWS CDK v2](https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html#getting_started_install).
 
@@ -30,14 +30,14 @@ A minimally complete deployment is shown below. By default, a standard network
 will be created running Hyperledger Fabric 1.4 with a single `bc.t3.small` node.
 
 ```typescript
-import * as cdk from 'aws-cdk-lib';
-import * as constructs from 'constructs';
-import * as hyperledger from 'cdk-hyperledger-fabric-network';
+import { Stack, StackProps }* as cdk from 'aws-cdk-lib';
+import { Construct } from 'constructs';
+import { HyperledgerFabricNetwork } from 'cdk-hyperledger-fabric-network';
 
-class MyStack extends cdk.Stack {
-  constructor(scope: constructs.Construct, id: string, props?: cdk.StackProps) {
+class MyStack extends Stack {
+  constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
-    new hyperledger.HyperledgerFabricNetwork(this, 'MyNetwork', {
+    new HyperledgerFabricNetwork(this, 'MyNetwork', {
       networkName: 'MyNetwork',
       memberName: 'MyMember',
     });
@@ -45,10 +45,27 @@ class MyStack extends cdk.Stack {
 }
 ```
 
+The equivalent Python code is as follows:
+
+```python
+from aws_cdk import Stack
+from cdk_hyperledger_fabric_network import HyperledgerFabricNetwork
+
+
+class MyStack(Stack):
+    def __init__(self, scope, id, **kwargs):
+        super().__init__(scope, id, **kwargs)
+        HyperledgerFabricNetwork(
+            self, 'MyNetwork',
+            network_name='MyNetwork',
+            member_name='MyMember',
+        )
+```
+
 The following is a more complex instantiation illustrating some of the options available.
 
 ```typescript
-new hyperledger.HyperledgerFabricNetwork(this, 'MyNetwork', {
+new HyperledgerFabricNetwork(this, 'MyNetwork', {
   networkName: 'MyNetwork',
   networkDescription: 'This is my Hyperledger Fabric network',
   memberName: 'MyMember',

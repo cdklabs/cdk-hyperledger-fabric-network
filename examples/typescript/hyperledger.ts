@@ -6,7 +6,7 @@ import * as cdk from 'aws-cdk-lib';
 import * as cdknag from 'cdk-nag';
 import * as constructs from 'constructs';
 
-import * as hyperledger from '../src';
+import * as hyperledger from 'cdk-hyperledger-fabric-network';
 
 
 class HyperledgerTestStack extends cdk.Stack {

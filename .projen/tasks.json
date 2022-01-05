@@ -175,30 +175,6 @@
         }
       ]
     },
-    "test:deploy": {
-      "name": "test:deploy",
-      "steps": [
-        {
-          "exec": "cdk deploy --progress events"
-        }
-      ]
-    },
-    "test:destroy": {
-      "name": "test:destroy",
-      "steps": [
-        {
-          "exec": "cdk destroy"
-        }
-      ]
-    },
-    "test:synth": {
-      "name": "test:synth",
-      "steps": [
-        {
-          "exec": "cdk synth"
-        }
-      ]
-    },
     "test:update": {
       "name": "test:update",
       "description": "Update jest snapshots",
