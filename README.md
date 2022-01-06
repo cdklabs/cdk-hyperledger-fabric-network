@@ -5,7 +5,6 @@ Fabric network running on Amazon Managed Blockchain. It currently builds
 out a member and its nodes, but the following enhanced functionality
 is planned for future releases:
 
-*  Support for other languages (e.g. Python)
 *  Enable CA, node, and chaincode logging
 *  Enroll users, storing their credentials in Secrets Manager
 *  Create channels on nodes
@@ -30,14 +29,14 @@ A minimally complete deployment is shown below. By default, a standard network
 will be created running Hyperledger Fabric 1.4 with a single `bc.t3.small` node.
 
 ```typescript
-import { Stack, StackProps }* as cdk from 'aws-cdk-lib';
+import { Stack, StackProps } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { HyperledgerFabricNetwork } from 'cdk-hyperledger-fabric-network';
 
 class MyStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
-    new HyperledgerFabricNetwork(this, 'MyNetwork', {
+    new HyperledgerFabricNetwork(this, 'Example', {
       networkName: 'MyNetwork',
       memberName: 'MyMember',
     });
@@ -51,12 +50,11 @@ The equivalent Python code is as follows:
 from aws_cdk import Stack
 from cdk_hyperledger_fabric_network import HyperledgerFabricNetwork
 
-
 class MyStack(Stack):
     def __init__(self, scope, id, **kwargs):
         super().__init__(scope, id, **kwargs)
         HyperledgerFabricNetwork(
-            self, 'MyNetwork',
+            self, 'Example',
             network_name='MyNetwork',
             member_name='MyMember',
         )
@@ -65,7 +63,7 @@ class MyStack(Stack):
 The following is a more complex instantiation illustrating some of the options available.
 
 ```typescript
-new HyperledgerFabricNetwork(this, 'MyNetwork', {
+new HyperledgerFabricNetwork(this, 'Example', {
   networkName: 'MyNetwork',
   networkDescription: 'This is my Hyperledger Fabric network',
   memberName: 'MyMember',
