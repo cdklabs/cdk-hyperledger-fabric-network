@@ -25,8 +25,6 @@
     "test:update": "npx projen test:update",
     "test:watch": "npx projen test:watch",
     "unbump": "npx projen unbump",
-    "upgrade": "npx projen upgrade",
-    "upgrade-projen": "npx projen upgrade-projen",
     "watch": "npx projen watch",
     "projen": "npx projen"
   },
@@ -40,7 +38,7 @@
     "@types/node": "^12",
     "@typescript-eslint/eslint-plugin": "^5",
     "@typescript-eslint/parser": "^5",
-    "aws-cdk-lib": "2.3.0",
+    "aws-cdk-lib": "2.4.0",
     "cdk-nag": "^2.0.0",
     "constructs": "10.0.5",
     "eslint": "^8",
@@ -53,14 +51,13 @@
     "jsii-diff": "^1.49.0",
     "jsii-docgen": "^4.2.19",
     "json-schema": "^0.4.0",
-    "npm-check-updates": "^12",
     "projen": "^0.50.7",
     "standard-version": "^9",
     "ts-jest": "^27.1.2",
     "typescript": "^4.5.4"
   },
   "peerDependencies": {
-    "aws-cdk-lib": "^2.3.0",
+    "aws-cdk-lib": "^2.4.0",
     "constructs": "^10.0.5"
   },
   "keywords": [

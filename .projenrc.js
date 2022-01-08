@@ -15,19 +15,15 @@ const project = new awscdk.AwsCdkConstructLibrary({
   copyrightOwner: 'Amazon.com, Inc. or its affiliates. All Rights Reserved.',
   defaultReleaseBranch: 'main',
   repositoryUrl: 'https://github.com/aws-samples/cdk-hyperledger-fabric-network.git',
-  cdkVersion: '2.3.0',
+  cdkVersion: '2.4.0',
+  depsUpgrade: false,
   devDeps: [
     'cdk-nag@^2.0.0',
-  ],
-  gitignore: [
-    'cdk.out',
   ],
   npmignore: [
     '*.md',
     '.gitattributes',
     '.jsii',
-    'cdk.json',
-    'cdk.out',
   ],
   publishToPypi: {
     distName: 'cdk-hypderledger-fabric-network',
