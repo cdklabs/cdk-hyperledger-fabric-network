@@ -16,7 +16,9 @@ const project = new awscdk.AwsCdkConstructLibrary({
   defaultReleaseBranch: 'main',
   repositoryUrl: 'https://github.com/aws-samples/cdk-hyperledger-fabric-network.git',
   cdkVersion: '2.4.0',
-  depsUpgrade: false,
+  depsUpgradeOptions: {
+    workflow: false,
+  },
   devDeps: [
     'cdk-nag@^2.0.0',
   ],
