@@ -5,6 +5,7 @@ Fabric network running on Amazon Managed Blockchain. It currently builds
 out a member and its nodes, but the following enhanced functionality
 is planned for future releases:
 
+*  Add support for Java and .NET
 *  Enable CA, node, and chaincode logging
 *  Enroll users, storing their credentials in Secrets Manager
 *  Create channels on nodes
