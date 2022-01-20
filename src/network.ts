@@ -101,6 +101,12 @@ export interface HyperledgerFabricNetworkProps {
   readonly thresholdComparator?: ThresholdComparator;
 
   /**
+   * The configuration to enable or disable certificate authority logging
+   * @default - true
+   */
+  readonly enableCaLogging?: boolean;
+
+  /**
    * List of nodes to create on the network
    *
    * @default - One node with default configuration
@@ -172,6 +178,11 @@ export class HyperledgerFabricNetwork extends constructs.Construct {
   public readonly thresholdComparator: ThresholdComparator;
 
   /**
+   * The configuration to enable or disable certificate authority logging
+   */
+  public readonly enableCaLogging: boolean;
+
+  /**
    * Managed Blockchain network VPC endpoint service name
    */
   public readonly vpcEndpointServiceName: string;
@@ -226,6 +237,7 @@ export class HyperledgerFabricNetwork extends constructs.Construct {
     this.proposalDurationInHours = props.proposalDurationInHours ?? 24;
     this.thresholdPercentage = props.thresholdPercentage ?? 50;
     this.thresholdComparator = props.thresholdComparator ?? ThresholdComparator.GREATER_THAN;
+    this.enableCaLogging = props.enableCaLogging ?? true;
 
     // Ensure the parameters captured above are valid, so we don't
     // need to wait until deployment time to discover an error
@@ -309,7 +321,7 @@ export class HyperledgerFabricNetwork extends constructs.Construct {
     // can't populate their outputs fully until later, which is annoying
     const nodeIds = this.nodes.map(n => n.nodeId);
     const nodeArns = nodeIds.map(i => `arn:${partition}:managedblockchain:${region}:${account}:nodes/${i}`);
-    const dataSdkCallPolicy = customresources.AwsCustomResourcePolicy.fromSdkCalls({
+    const sdkCallPolicy = customresources.AwsCustomResourcePolicy.fromSdkCalls({
       resources: [
         `arn:${partition}:managedblockchain:${region}::networks/${this.networkId}`,
         `arn:${partition}:managedblockchain:${region}:${account}:members/${this.memberId}`,
@@ -334,14 +346,35 @@ export class HyperledgerFabricNetwork extends constructs.Construct {
 
     // Data items need fetching on creation and updating; nothing needs doing on deletion
     const networkData = new customresources.AwsCustomResource(this, 'NetworkDataResource', {
-      policy: dataSdkCallPolicy,
+      policy: sdkCallPolicy,
       onCreate: networkDataSdkCall,
       onUpdate: networkDataSdkCall,
     });
     const memberData = new customresources.AwsCustomResource(this, 'MemberDataResource', {
-      policy: dataSdkCallPolicy,
+      policy: sdkCallPolicy,
       onCreate: memberDataSdkCall,
       onUpdate: memberDataSdkCall,
+    });
+
+    // Cloudformation doesn't include logging configuration
+    // so use SDK call to configure
+    const logPublishingConfiguration = {
+      Fabric: {
+        CaLogs: {
+          Cloudwatch: { Enabled: this.enableCaLogging },
+        },
+      },
+    };
+    const configureCaLogSdkCall = {
+      service: 'ManagedBlockchain',
+      action: 'updateMember',
+      parameters: { NetworkId: this.networkId, MemberId: this.memberId, LogPublishingConfiguration: logPublishingConfiguration },
+      physicalResourceId: customresources.PhysicalResourceId.of('Id'),
+    };
+    new customresources.AwsCustomResource(this, 'ConfigureCaLogResource', {
+      policy: sdkCallPolicy,
+      onCreate: configureCaLogSdkCall,
+      onUpdate: configureCaLogSdkCall,
     });
 
     // Grab items out of the above return values and stick them in output properties
@@ -351,8 +384,11 @@ export class HyperledgerFabricNetwork extends constructs.Construct {
 
     // As stated earlier, node constructs can't populate all their properties
     // until after the above network and member SDK calls succeed; thus the
-    // function call below where the fetches are split out
-    for (const n of this.nodes) n.fetchData(dataSdkCallPolicy);
+    // function calls below where the fetches are split out and logging is configured
+    for (const n of this.nodes) {
+      n.configureLogging(sdkCallPolicy);
+      n.fetchData(sdkCallPolicy);
+    }
 
   }
 

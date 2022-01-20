@@ -50,6 +50,7 @@ new HyperledgerFabricNetwork(scope: Construct, id: string, props: HyperledgerFab
 | [`adminPrivateKeySecret`](#cdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropertyadminprivatekeysecret)<span title="Required">*</span> | [`aws-cdk-lib.aws_secretsmanager.Secret`](#aws-cdk-lib.aws_secretsmanager.Secret) | Secret for Hyperledger Fabric admin private key. |
 | [`adminSignedCertSecret`](#cdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropertyadminsignedcertsecret)<span title="Required">*</span> | [`aws-cdk-lib.aws_secretsmanager.Secret`](#aws-cdk-lib.aws_secretsmanager.Secret) | Secret for Hyperledger Fabric admin signed certificate. |
 | [`caEndpoint`](#cdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropertycaendpoint)<span title="Required">*</span> | `string` | Managed Blockchain member CA endpoint. |
+| [`enableCaLogging`](#cdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropertyenablecalogging)<span title="Required">*</span> | `boolean` | The configuration to enable or disable certificate authority logging. |
 | [`frameworkVersion`](#cdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropertyframeworkversion)<span title="Required">*</span> | [`cdk-hyperledger-fabric-network.FrameworkVersion`](#cdk-hyperledger-fabric-network.FrameworkVersion) | Hyperledger Fabric framework version. |
 | [`memberDescription`](#cdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropertymemberdescription)<span title="Required">*</span> | `string` | Managed Blockchain member description. |
 | [`memberId`](#cdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropertymemberid)<span title="Required">*</span> | `string` | Managed Blockchain member identifier generated on construction. |
@@ -112,6 +113,18 @@ public readonly caEndpoint: string;
 - *Type:* `string`
 
 Managed Blockchain member CA endpoint.
+
+---
+
+##### `enableCaLogging`<sup>Required</sup> <a name="cdk-hyperledger-fabric-network.HyperledgerFabricNetwork.property.enableCaLogging" id="cdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropertyenablecalogging"></a>
+
+```typescript
+public readonly enableCaLogging: boolean;
+```
+
+- *Type:* `boolean`
+
+The configuration to enable or disable certificate authority logging.
 
 ---
 
@@ -326,7 +339,20 @@ new HyperledgerFabricNode(scope: HyperledgerFabricNetwork, id: string, props?: H
 
 | **Name** | **Description** |
 | --- | --- |
+| [`configureLogging`](#cdkhyperledgerfabricnetworkhyperledgerfabricnodeconfigurelogging) | *No description.* |
 | [`fetchData`](#cdkhyperledgerfabricnetworkhyperledgerfabricnodefetchdata) | *No description.* |
+
+---
+
+##### `configureLogging` <a name="cdk-hyperledger-fabric-network.HyperledgerFabricNode.configureLogging" id="cdkhyperledgerfabricnetworkhyperledgerfabricnodeconfigurelogging"></a>
+
+```typescript
+public configureLogging(sdkCallPolicy: AwsCustomResourcePolicy)
+```
+
+###### `sdkCallPolicy`<sup>Required</sup> <a name="cdk-hyperledger-fabric-network.HyperledgerFabricNode.parameter.sdkCallPolicy" id="cdkhyperledgerfabricnetworkhyperledgerfabricnodeparametersdkcallpolicy"></a>
+
+- *Type:* [`aws-cdk-lib.custom_resources.AwsCustomResourcePolicy`](#aws-cdk-lib.custom_resources.AwsCustomResourcePolicy)
 
 ---
 
@@ -375,6 +401,8 @@ HyperledgerFabricNode.constructNodes(scope: HyperledgerFabricNetwork, nodeProps?
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | [`availabilityZone`](#cdkhyperledgerfabricnetworkhyperledgerfabricnodepropertyavailabilityzone)<span title="Required">*</span> | `string` | The Availability Zone in which the node exists. |
+| [`enableChaincodeLogging`](#cdkhyperledgerfabricnetworkhyperledgerfabricnodepropertyenablechaincodelogging)<span title="Required">*</span> | `boolean` | The configuration to enable or disable chaincode logging. |
+| [`enableNodeLogging`](#cdkhyperledgerfabricnetworkhyperledgerfabricnodepropertyenablenodelogging)<span title="Required">*</span> | `boolean` | The configuration to enable or disable node logging. |
 | [`instanceType`](#cdkhyperledgerfabricnetworkhyperledgerfabricnodepropertyinstancetype)<span title="Required">*</span> | [`cdk-hyperledger-fabric-network.InstanceType`](#cdk-hyperledger-fabric-network.InstanceType) | The Amazon Managed Blockchain instance type for the node. |
 | [`memberId`](#cdkhyperledgerfabricnetworkhyperledgerfabricnodepropertymemberid)<span title="Required">*</span> | `string` | Managed Blockchain member identifier. |
 | [`networkId`](#cdkhyperledgerfabricnetworkhyperledgerfabricnodepropertynetworkid)<span title="Required">*</span> | `string` | Managed Blockchain network identifier. |
@@ -393,6 +421,30 @@ public readonly availabilityZone: string;
 - *Type:* `string`
 
 The Availability Zone in which the node exists.
+
+---
+
+##### `enableChaincodeLogging`<sup>Required</sup> <a name="cdk-hyperledger-fabric-network.HyperledgerFabricNode.property.enableChaincodeLogging" id="cdkhyperledgerfabricnetworkhyperledgerfabricnodepropertyenablechaincodelogging"></a>
+
+```typescript
+public readonly enableChaincodeLogging: boolean;
+```
+
+- *Type:* `boolean`
+
+The configuration to enable or disable chaincode logging.
+
+---
+
+##### `enableNodeLogging`<sup>Required</sup> <a name="cdk-hyperledger-fabric-network.HyperledgerFabricNode.property.enableNodeLogging" id="cdkhyperledgerfabricnetworkhyperledgerfabricnodepropertyenablenodelogging"></a>
+
+```typescript
+public readonly enableNodeLogging: boolean;
+```
+
+- *Type:* `boolean`
+
+The configuration to enable or disable node logging.
 
 ---
 
@@ -485,6 +537,7 @@ const hyperledgerFabricNetworkProps: HyperledgerFabricNetworkProps = { ... }
 | --- | --- | --- |
 | [`memberName`](#cdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropspropertymembername)<span title="Required">*</span> | `string` | Managed Blockchain member name. |
 | [`networkName`](#cdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropspropertynetworkname)<span title="Required">*</span> | `string` | Managed Blockchain network name. |
+| [`enableCaLogging`](#cdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropspropertyenablecalogging) | `boolean` | The configuration to enable or disable certificate authority logging. |
 | [`frameworkVersion`](#cdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropspropertyframeworkversion) | [`cdk-hyperledger-fabric-network.FrameworkVersion`](#cdk-hyperledger-fabric-network.FrameworkVersion) | Hyperledger Fabric framework version. |
 | [`memberDescription`](#cdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropspropertymemberdescription) | `string` | Managed Blockchain member description. |
 | [`networkDescription`](#cdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropspropertynetworkdescription) | `string` | Managed Blockchain network description. |
@@ -517,6 +570,19 @@ public readonly networkName: string;
 - *Type:* `string`
 
 Managed Blockchain network name.
+
+---
+
+##### `enableCaLogging`<sup>Optional</sup> <a name="cdk-hyperledger-fabric-network.HyperledgerFabricNetworkProps.property.enableCaLogging" id="cdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropspropertyenablecalogging"></a>
+
+```typescript
+public readonly enableCaLogging: boolean;
+```
+
+- *Type:* `boolean`
+- *Default:* true
+
+The configuration to enable or disable certificate authority logging.
 
 ---
 
@@ -641,6 +707,8 @@ const hyperledgerFabricNodeProps: HyperledgerFabricNodeProps = { ... }
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | [`availabilityZone`](#cdkhyperledgerfabricnetworkhyperledgerfabricnodepropspropertyavailabilityzone) | `string` | The Availability Zone in which the node will be created. |
+| [`enableChaincodeLogging`](#cdkhyperledgerfabricnetworkhyperledgerfabricnodepropspropertyenablechaincodelogging) | `boolean` | The configuration to enable or disable chaincode logging. |
+| [`enableNodeLogging`](#cdkhyperledgerfabricnetworkhyperledgerfabricnodepropspropertyenablenodelogging) | `boolean` | The configuration to enable or disable node logging. |
 | [`instanceType`](#cdkhyperledgerfabricnetworkhyperledgerfabricnodepropspropertyinstancetype) | [`cdk-hyperledger-fabric-network.InstanceType`](#cdk-hyperledger-fabric-network.InstanceType) | The Amazon Managed Blockchain instance type for the node. |
 
 ---
@@ -655,6 +723,32 @@ public readonly availabilityZone: string;
 - *Default:* The first AZ in the region
 
 The Availability Zone in which the node will be created.
+
+---
+
+##### `enableChaincodeLogging`<sup>Optional</sup> <a name="cdk-hyperledger-fabric-network.HyperledgerFabricNodeProps.property.enableChaincodeLogging" id="cdkhyperledgerfabricnetworkhyperledgerfabricnodepropspropertyenablechaincodelogging"></a>
+
+```typescript
+public readonly enableChaincodeLogging: boolean;
+```
+
+- *Type:* `boolean`
+- *Default:* true
+
+The configuration to enable or disable chaincode logging.
+
+---
+
+##### `enableNodeLogging`<sup>Optional</sup> <a name="cdk-hyperledger-fabric-network.HyperledgerFabricNodeProps.property.enableNodeLogging" id="cdkhyperledgerfabricnetworkhyperledgerfabricnodepropspropertyenablenodelogging"></a>
+
+```typescript
+public readonly enableNodeLogging: boolean;
+```
+
+- *Type:* `boolean`
+- *Default:* true
+
+The configuration to enable or disable node logging.
 
 ---
 

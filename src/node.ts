@@ -56,6 +56,18 @@ export interface HyperledgerFabricNodeProps {
    */
   readonly instanceType?: InstanceType;
 
+  /**
+   * The configuration to enable or disable chaincode logging
+   * @default - true
+   */
+  readonly enableChaincodeLogging?: boolean;
+
+  /**
+   * The configuration to enable or disable node logging
+   * @default - true
+   */
+  readonly enableNodeLogging?: boolean;
+
 }
 
 
@@ -108,6 +120,16 @@ export class HyperledgerFabricNode extends constructs.Construct {
    */
   public readonly instanceType: InstanceType;
 
+  /**
+   * The configuration to enable or disable chaincode logging
+   */
+  public readonly enableChaincodeLogging: boolean;
+
+  /**
+   * The configuration to enable or disable node logging
+   */
+  public readonly enableNodeLogging: boolean;
+
   // These cannot be readonly since they have to be set after construction
   // due the race condition documented in https://github.com/aws/aws-cdk/issues/18237.
   public endpoint: string = '';
@@ -124,6 +146,8 @@ export class HyperledgerFabricNode extends constructs.Construct {
     if (typeof props === 'undefined') props = {};
     this.availabilityZone = props.availabilityZone ?? `${region}a`;
     this.instanceType = props.instanceType ?? InstanceType.BURSTABLE3_SMALL;
+    this.enableChaincodeLogging = props.enableChaincodeLogging ?? true;
+    this.enableNodeLogging = props.enableNodeLogging ?? true;
     this.networkId = scope.networkId;
     this.memberId = scope.memberId;
 
@@ -149,6 +173,43 @@ export class HyperledgerFabricNode extends constructs.Construct {
     // Capture data included in the Cloudformation output in instance variables
     this.nodeId = node.getAtt('NodeId').toString();
 
+  }
+
+  /*
+   * Configure logging for the node via SDK call; this function
+   * should be merged back into the constructor once the race condition is solved
+   */
+  public configureLogging(sdkCallPolicy: customresources.AwsCustomResourcePolicy) {
+
+    // This call doesn't really need all the permissions its using in the
+    // provided policy, but since the policy must be constructed all at once
+    // this is the only way to do it effectively
+    const logPublishingConfiguration = {
+      Fabric: {
+        ChaincodeLogs: {
+          Cloudwatch: { Enabled: this.enableChaincodeLogging },
+        },
+        PeerLogs: {
+          Cloudwatch: { Enabled: this.enableNodeLogging },
+        },
+      },
+    };
+    const configureNodeLogSdkCall = {
+      service: 'ManagedBlockchain',
+      action: 'updateNode',
+      parameters: {
+        NetworkId: this.networkId,
+        MemberId: this.memberId,
+        NodeId: this.nodeId,
+        LogPublishingConfiguration: logPublishingConfiguration,
+      },
+      physicalResourceId: customresources.PhysicalResourceId.of('Id'),
+    };
+    new customresources.AwsCustomResource(this, 'ConfigureNodeLogResource', {
+      policy: sdkCallPolicy,
+      onCreate: configureNodeLogSdkCall,
+      onUpdate: configureNodeLogSdkCall,
+    });
   }
 
   /*
