@@ -38,6 +38,8 @@ describe('HyperledgerFabricNode', () => {
     expect(network.nodes[0].nodeId).toMatch(TOKEN_REGEXP);
     expect(network.nodes[0].endpoint).toMatch(TOKEN_REGEXP);
     expect(network.nodes[0].eventEndpoint).toMatch(TOKEN_REGEXP);
+    expect(network.nodes[0].enableNodeLogging).toBe(true);
+    expect(network.nodes[0].enableChaincodeLogging).toBe(true);
   });
 
   test('Create a network without any nodes', () => {
@@ -271,6 +273,69 @@ describe('HyperledgerFabricNode', () => {
       });
     };
     expect(unsupportedInstanceType).toThrow(Error);
+  });
+
+  test('Create network with node logging disabled', () => {
+    const app = new cdk.App();
+    const stack = new cdk.Stack(app, 'TestStack', DEFAULT_ENV);
+    const network = new hyperledger.HyperledgerFabricNetwork(stack, 'TestHyperledgerFabricNetwork', {
+      networkName: 'TestNetwork',
+      memberName: 'TestMember',
+      nodes: [
+        {
+          enableNodeLogging: false,
+        },
+      ],
+    });
+
+    expect(network.nodes[0].enableNodeLogging).toBe(false);
+  });
+  test('Create network with node logging enabled', () => {
+    const app = new cdk.App();
+    const stack = new cdk.Stack(app, 'TestStack', DEFAULT_ENV);
+    const network = new hyperledger.HyperledgerFabricNetwork(stack, 'TestHyperledgerFabricNetwork', {
+      networkName: 'TestNetwork',
+      memberName: 'TestMember',
+      nodes: [
+        {
+          enableNodeLogging: true,
+        },
+      ],
+    });
+
+    expect(network.nodes[0].enableNodeLogging).toBe(true);
+  });
+
+  test('Create network with chaincode logging disabled', () => {
+    const app = new cdk.App();
+    const stack = new cdk.Stack(app, 'TestStack', DEFAULT_ENV);
+    const network = new hyperledger.HyperledgerFabricNetwork(stack, 'TestHyperledgerFabricNetwork', {
+      networkName: 'TestNetwork',
+      memberName: 'TestMember',
+      nodes: [
+        {
+          enableChaincodeLogging: false,
+        },
+      ],
+    });
+
+    expect(network.nodes[0].enableChaincodeLogging).toBe(false);
+  });
+
+  test('Create network with chaincode logging enabled', () => {
+    const app = new cdk.App();
+    const stack = new cdk.Stack(app, 'TestStack', DEFAULT_ENV);
+    const network = new hyperledger.HyperledgerFabricNetwork(stack, 'TestHyperledgerFabricNetwork', {
+      networkName: 'TestNetwork',
+      memberName: 'TestMember',
+      nodes: [
+        {
+          enableChaincodeLogging: true,
+        },
+      ],
+    });
+
+    expect(network.nodes[0].enableChaincodeLogging).toBe(true);
   });
 
 });

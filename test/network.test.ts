@@ -68,6 +68,7 @@ describe('HyperledgerFabricNetwork', () => {
     expect(network.adminPasswordSecret).toBeInstanceOf(secretsmanager.Secret);
     expect(network.adminPrivateKeySecret).toBeInstanceOf(secretsmanager.Secret);
     expect(network.adminSignedCertSecret).toBeInstanceOf(secretsmanager.Secret);
+    expect(network.enableCaLogging).toBe(true);
   });
 
   test('Create a network with custom descriptions', () => {
@@ -337,6 +338,30 @@ describe('HyperledgerFabricNetwork', () => {
     expect(thresholdTooSmall).toThrow(Error);
     expect(thresholdTooLarge).toThrow(Error);
     expect(thresholdNotInteger).toThrow(Error);
+  });
+
+  test('Create network with CA Logging disabled', () => {
+    const app = new cdk.App();
+    const stack = new cdk.Stack(app, 'TestStack', DEFAULT_ENV);
+    const network = new hyperledger.HyperledgerFabricNetwork(stack, 'TestHyperledgerFabricNetwork', {
+      networkName: 'TestNetwork',
+      memberName: 'TestMember',
+      enableCaLogging: false,
+    });
+
+    expect(network.enableCaLogging).toBe(false);
+  });
+
+  test('Create network with CA logging enabled', () => {
+    const app = new cdk.App();
+    const stack = new cdk.Stack(app, 'TestStack', DEFAULT_ENV);
+    const network = new hyperledger.HyperledgerFabricNetwork(stack, 'TestHyperledgerFabricNetwork', {
+      networkName: 'TestNetwork',
+      memberName: 'TestMember',
+      enableCaLogging: true,
+    });
+
+    expect(network.enableCaLogging).toBe(true);
   });
 
 });
