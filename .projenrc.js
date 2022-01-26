@@ -33,6 +33,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   },
   keywords: [
     'aws',
+    'awscdk',
     'blockchain',
     'cdk',
     'hyperledger',

@@ -66,6 +66,7 @@
   },
   "keywords": [
     "aws",
+    "awscdk",
     "blockchain",
     "cdk",
     "hyperledger"
