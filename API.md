@@ -2,6 +2,93 @@
 
 ## Constructs <a name="Constructs" id="constructs"></a>
 
+### HyperledgerFabricClient <a name="cdk-hyperledger-fabric-network.HyperledgerFabricClient" id="cdkhyperledgerfabricnetworkhyperledgerfabricclient"></a>
+
+Creates a VPC and endpoint that allows Hyperledger Fabric client to interact with the Hyperledger Fabric endpoints that Amazon Managed Blockchain exposes for the member and network resources.
+
+#### Initializers <a name="cdk-hyperledger-fabric-network.HyperledgerFabricClient.Initializer" id="cdkhyperledgerfabricnetworkhyperledgerfabricclientinitializer"></a>
+
+```typescript
+import { HyperledgerFabricClient } from 'cdk-hyperledger-fabric-network'
+
+new HyperledgerFabricClient(scope: HyperledgerFabricNetwork, id: string, props?: HyperledgerFabricClientProps)
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`scope`](#cdkhyperledgerfabricnetworkhyperledgerfabricclientparameterscope)<span title="Required">*</span> | [`cdk-hyperledger-fabric-network.HyperledgerFabricNetwork`](#cdk-hyperledger-fabric-network.HyperledgerFabricNetwork) | *No description.* |
+| [`id`](#cdkhyperledgerfabricnetworkhyperledgerfabricclientparameterid)<span title="Required">*</span> | `string` | *No description.* |
+| [`props`](#cdkhyperledgerfabricnetworkhyperledgerfabricclientparameterprops) | [`cdk-hyperledger-fabric-network.HyperledgerFabricClientProps`](#cdk-hyperledger-fabric-network.HyperledgerFabricClientProps) | *No description.* |
+
+---
+
+##### `scope`<sup>Required</sup> <a name="cdk-hyperledger-fabric-network.HyperledgerFabricClient.parameter.scope" id="cdkhyperledgerfabricnetworkhyperledgerfabricclientparameterscope"></a>
+
+- *Type:* [`cdk-hyperledger-fabric-network.HyperledgerFabricNetwork`](#cdk-hyperledger-fabric-network.HyperledgerFabricNetwork)
+
+---
+
+##### `id`<sup>Required</sup> <a name="cdk-hyperledger-fabric-network.HyperledgerFabricClient.parameter.id" id="cdkhyperledgerfabricnetworkhyperledgerfabricclientparameterid"></a>
+
+- *Type:* `string`
+
+---
+
+##### `props`<sup>Optional</sup> <a name="cdk-hyperledger-fabric-network.HyperledgerFabricClient.parameter.props" id="cdkhyperledgerfabricnetworkhyperledgerfabricclientparameterprops"></a>
+
+- *Type:* [`cdk-hyperledger-fabric-network.HyperledgerFabricClientProps`](#cdk-hyperledger-fabric-network.HyperledgerFabricClientProps)
+
+---
+
+
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`secretsManagerVpcEndpoint`](#cdkhyperledgerfabricnetworkhyperledgerfabricclientpropertysecretsmanagervpcendpoint)<span title="Required">*</span> | [`aws-cdk-lib.aws_ec2.VpcEndpoint`](#aws-cdk-lib.aws_ec2.VpcEndpoint) | VPC endpoint to access Secret Manager. |
+| [`vpc`](#cdkhyperledgerfabricnetworkhyperledgerfabricclientpropertyvpc)<span title="Required">*</span> | [`aws-cdk-lib.aws_ec2.IVpc`](#aws-cdk-lib.aws_ec2.IVpc) | The client VPC that has endpoint to access the Amazon Managed Blockchain. |
+| [`vpcEndpoint`](#cdkhyperledgerfabricnetworkhyperledgerfabricclientpropertyvpcendpoint)<span title="Required">*</span> | [`aws-cdk-lib.aws_ec2.VpcEndpoint`](#aws-cdk-lib.aws_ec2.VpcEndpoint) | Managed Blockchain network VPC endpoint. |
+
+---
+
+##### `secretsManagerVpcEndpoint`<sup>Required</sup> <a name="cdk-hyperledger-fabric-network.HyperledgerFabricClient.property.secretsManagerVpcEndpoint" id="cdkhyperledgerfabricnetworkhyperledgerfabricclientpropertysecretsmanagervpcendpoint"></a>
+
+```typescript
+public readonly secretsManagerVpcEndpoint: VpcEndpoint;
+```
+
+- *Type:* [`aws-cdk-lib.aws_ec2.VpcEndpoint`](#aws-cdk-lib.aws_ec2.VpcEndpoint)
+
+VPC endpoint to access Secret Manager.
+
+---
+
+##### `vpc`<sup>Required</sup> <a name="cdk-hyperledger-fabric-network.HyperledgerFabricClient.property.vpc" id="cdkhyperledgerfabricnetworkhyperledgerfabricclientpropertyvpc"></a>
+
+```typescript
+public readonly vpc: IVpc;
+```
+
+- *Type:* [`aws-cdk-lib.aws_ec2.IVpc`](#aws-cdk-lib.aws_ec2.IVpc)
+
+The client VPC that has endpoint to access the Amazon Managed Blockchain.
+
+---
+
+##### `vpcEndpoint`<sup>Required</sup> <a name="cdk-hyperledger-fabric-network.HyperledgerFabricClient.property.vpcEndpoint" id="cdkhyperledgerfabricnetworkhyperledgerfabricclientpropertyvpcendpoint"></a>
+
+```typescript
+public readonly vpcEndpoint: VpcEndpoint;
+```
+
+- *Type:* [`aws-cdk-lib.aws_ec2.VpcEndpoint`](#aws-cdk-lib.aws_ec2.VpcEndpoint)
+
+Managed Blockchain network VPC endpoint.
+
+---
+
+
 ### HyperledgerFabricNetwork <a name="cdk-hyperledger-fabric-network.HyperledgerFabricNetwork" id="cdkhyperledgerfabricnetworkhyperledgerfabricnetwork"></a>
 
 Creates a Hyperledger Fabric network on Amazon Managed Blockchain.
@@ -50,6 +137,7 @@ new HyperledgerFabricNetwork(scope: Construct, id: string, props: HyperledgerFab
 | [`adminPrivateKeySecret`](#cdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropertyadminprivatekeysecret)<span title="Required">*</span> | [`aws-cdk-lib.aws_secretsmanager.Secret`](#aws-cdk-lib.aws_secretsmanager.Secret) | Secret for Hyperledger Fabric admin private key. |
 | [`adminSignedCertSecret`](#cdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropertyadminsignedcertsecret)<span title="Required">*</span> | [`aws-cdk-lib.aws_secretsmanager.Secret`](#aws-cdk-lib.aws_secretsmanager.Secret) | Secret for Hyperledger Fabric admin signed certificate. |
 | [`caEndpoint`](#cdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropertycaendpoint)<span title="Required">*</span> | `string` | Managed Blockchain member CA endpoint. |
+| [`client`](#cdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropertyclient)<span title="Required">*</span> | [`cdk-hyperledger-fabric-network.HyperledgerFabricClient`](#cdk-hyperledger-fabric-network.HyperledgerFabricClient) | The client network to interact with the Hyperledger Fabric network. |
 | [`enableCaLogging`](#cdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropertyenablecalogging)<span title="Required">*</span> | `boolean` | The configuration to enable or disable certificate authority logging. |
 | [`frameworkVersion`](#cdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropertyframeworkversion)<span title="Required">*</span> | [`cdk-hyperledger-fabric-network.FrameworkVersion`](#cdk-hyperledger-fabric-network.FrameworkVersion) | Hyperledger Fabric framework version. |
 | [`memberDescription`](#cdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropertymemberdescription)<span title="Required">*</span> | `string` | Managed Blockchain member description. |
@@ -113,6 +201,18 @@ public readonly caEndpoint: string;
 - *Type:* `string`
 
 Managed Blockchain member CA endpoint.
+
+---
+
+##### `client`<sup>Required</sup> <a name="cdk-hyperledger-fabric-network.HyperledgerFabricNetwork.property.client" id="cdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropertyclient"></a>
+
+```typescript
+public readonly client: HyperledgerFabricClient;
+```
+
+- *Type:* [`cdk-hyperledger-fabric-network.HyperledgerFabricClient`](#cdk-hyperledger-fabric-network.HyperledgerFabricClient)
+
+The client network to interact with the Hyperledger Fabric network.
 
 ---
 
@@ -519,6 +619,40 @@ public readonly eventEndpoint: string;
 
 ## Structs <a name="Structs" id="structs"></a>
 
+### HyperledgerFabricClientProps <a name="cdk-hyperledger-fabric-network.HyperledgerFabricClientProps" id="cdkhyperledgerfabricnetworkhyperledgerfabricclientprops"></a>
+
+Construct properties for `HyperledgerFabricVpc`.
+
+#### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
+
+```typescript
+import { HyperledgerFabricClientProps } from 'cdk-hyperledger-fabric-network'
+
+const hyperledgerFabricClientProps: HyperledgerFabricClientProps = { ... }
+```
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`vpc`](#cdkhyperledgerfabricnetworkhyperledgerfabricclientpropspropertyvpc) | [`aws-cdk-lib.aws_ec2.IVpc`](#aws-cdk-lib.aws_ec2.IVpc) | Client VPC to create the endpoints. |
+
+---
+
+##### `vpc`<sup>Optional</sup> <a name="cdk-hyperledger-fabric-network.HyperledgerFabricClientProps.property.vpc" id="cdkhyperledgerfabricnetworkhyperledgerfabricclientpropspropertyvpc"></a>
+
+```typescript
+public readonly vpc: IVpc;
+```
+
+- *Type:* [`aws-cdk-lib.aws_ec2.IVpc`](#aws-cdk-lib.aws_ec2.IVpc)
+
+Client VPC to create the endpoints.
+
+If not provided, VPC will be created with the default properties (CIDR-`10.0.0.0/16` and subnets of type `PRIVATE_ISOLATED`)
+
+---
+
 ### HyperledgerFabricNetworkProps <a name="cdk-hyperledger-fabric-network.HyperledgerFabricNetworkProps" id="cdkhyperledgerfabricnetworkhyperledgerfabricnetworkprops"></a>
 
 Construct properties for `HyperledgerFabricNetwork`.
@@ -537,6 +671,7 @@ const hyperledgerFabricNetworkProps: HyperledgerFabricNetworkProps = { ... }
 | --- | --- | --- |
 | [`memberName`](#cdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropspropertymembername)<span title="Required">*</span> | `string` | Managed Blockchain member name. |
 | [`networkName`](#cdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropspropertynetworkname)<span title="Required">*</span> | `string` | Managed Blockchain network name. |
+| [`client`](#cdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropspropertyclient) | [`cdk-hyperledger-fabric-network.HyperledgerFabricClientProps`](#cdk-hyperledger-fabric-network.HyperledgerFabricClientProps) | The Client network to interact with the Hyperledger Fabric network. |
 | [`enableCaLogging`](#cdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropspropertyenablecalogging) | `boolean` | The configuration to enable or disable certificate authority logging. |
 | [`frameworkVersion`](#cdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropspropertyframeworkversion) | [`cdk-hyperledger-fabric-network.FrameworkVersion`](#cdk-hyperledger-fabric-network.FrameworkVersion) | Hyperledger Fabric framework version. |
 | [`memberDescription`](#cdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropspropertymemberdescription) | `string` | Managed Blockchain member description. |
@@ -570,6 +705,19 @@ public readonly networkName: string;
 - *Type:* `string`
 
 Managed Blockchain network name.
+
+---
+
+##### `client`<sup>Optional</sup> <a name="cdk-hyperledger-fabric-network.HyperledgerFabricNetworkProps.property.client" id="cdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropspropertyclient"></a>
+
+```typescript
+public readonly client: HyperledgerFabricClientProps;
+```
+
+- *Type:* [`cdk-hyperledger-fabric-network.HyperledgerFabricClientProps`](#cdk-hyperledger-fabric-network.HyperledgerFabricClientProps)
+- *Default:* Client network with Default properties (CIDR-`10.0.0.0/16` and subnets of type `PRIVATE_ISOLATED`)
+
+The Client network to interact with the Hyperledger Fabric network.
 
 ---
 

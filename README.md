@@ -14,7 +14,6 @@ is planned for future releases:
 *  Enroll users, storing their credentials in Secrets Manager
 *  Create channels on nodes
 *  Instantiate chaincode on nodes
-*  Set up a VPC and associated endpoint for accessing the network
 
 
 ## Installation

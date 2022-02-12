@@ -8,6 +8,7 @@ import * as secretsmanager from 'aws-cdk-lib/aws-secretsmanager';
 import * as customresources from 'aws-cdk-lib/custom-resources';
 import * as constructs from 'constructs';
 
+import * as client from './client';
 import * as node from './node';
 import * as utilities from './utilities';
 
@@ -113,6 +114,13 @@ export interface HyperledgerFabricNetworkProps {
    */
   readonly nodes?: Array<node.HyperledgerFabricNodeProps>;
 
+  /**
+   * The Client network to interact with the Hyperledger Fabric network
+   * @default - Client network with Default properties
+   * (CIDR-`10.0.0.0/16` and subnets of type `PRIVATE_ISOLATED`)
+   */
+  readonly client?: client.HyperledgerFabricClientProps;
+
 }
 
 
@@ -216,6 +224,11 @@ export class HyperledgerFabricNetwork extends constructs.Construct {
    * List of nodes created in the network
    */
   public readonly nodes: Array<node.HyperledgerFabricNode>;
+
+  /**
+   * The client network to interact with the Hyperledger Fabric network
+   */
+  public readonly client: client.HyperledgerFabricClient;
 
 
   constructor(scope: constructs.Construct, id: string, props: HyperledgerFabricNetworkProps) {
@@ -389,6 +402,9 @@ export class HyperledgerFabricNetwork extends constructs.Construct {
       n.configureLogging(sdkCallPolicy);
       n.fetchData(sdkCallPolicy);
     }
+
+    // Build out the client VPC construct
+    this.client = new client.HyperledgerFabricClient(this, 'Client', props.client);
 
   }
 
