@@ -19,6 +19,7 @@ import * as utilities from './utilities';
 export enum FrameworkVersion {
   VERSION_1_2 = '1.2',
   VERSION_1_4 = '1.4',
+  VERSION_2_2 = '2.2',
 }
 
 /*

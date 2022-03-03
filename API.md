@@ -923,6 +923,7 @@ The Amazon Managed Blockchain instance type for the node.
 | --- | --- |
 | [`VERSION_1_2`](#cdkhyperledgerfabricnetworkframeworkversionversion12) | *No description.* |
 | [`VERSION_1_4`](#cdkhyperledgerfabricnetworkframeworkversionversion14) | *No description.* |
+| [`VERSION_2_2`](#cdkhyperledgerfabricnetworkframeworkversionversion22) | *No description.* |
 
 ---
 
@@ -932,6 +933,11 @@ The Amazon Managed Blockchain instance type for the node.
 
 
 #### `VERSION_1_4` <a name="cdk-hyperledger-fabric-network.FrameworkVersion.VERSION_1_4" id="cdkhyperledgerfabricnetworkframeworkversionversion14"></a>
+
+---
+
+
+#### `VERSION_2_2` <a name="cdk-hyperledger-fabric-network.FrameworkVersion.VERSION_2_2" id="cdkhyperledgerfabricnetworkframeworkversionversion22"></a>
 
 ---
 
