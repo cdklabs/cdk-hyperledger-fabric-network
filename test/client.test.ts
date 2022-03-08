@@ -33,11 +33,10 @@ describe('HyperledgerFabricClient', () => {
     });
     template.resourceCountIs('AWS::EC2::FlowLog', 1);
     template.resourceCountIs('AWS::Logs::LogGroup', 1);
-    template.resourceCountIs('AWS::EC2::VPCEndpoint', 2);
+    template.resourceCountIs('AWS::EC2::VPCEndpoint', 3);
 
     expect(network.client.vpc.vpcId).toMatch(TOKEN_REGEXP);
     expect(network.client.vpcEndpoint.vpcEndpointId).toMatch(TOKEN_REGEXP);
-    expect(network.client.secretsManagerVpcEndpoint.vpcEndpointId).toMatch(TOKEN_REGEXP);
   });
 
   test('Create endpoints on existing a client network ', () => {
@@ -65,11 +64,10 @@ describe('HyperledgerFabricClient', () => {
     });
     template.resourceCountIs('AWS::EC2::FlowLog', 1);
     template.resourceCountIs('AWS::Logs::LogGroup', 1);
-    template.resourceCountIs('AWS::EC2::VPCEndpoint', 2);
+    template.resourceCountIs('AWS::EC2::VPCEndpoint', 3);
 
     expect(network.client.vpc.vpcId).toMatch(TOKEN_REGEXP);
     expect(network.client.vpcEndpoint.vpcEndpointId).toMatch(TOKEN_REGEXP);
-    expect(network.client.secretsManagerVpcEndpoint.vpcEndpointId).toMatch(TOKEN_REGEXP);
   });
 
 });

@@ -34,14 +34,9 @@ export class HyperledgerFabricClient extends constructs.Construct {
   public readonly vpc: ec2.IVpc;
 
   /**
-   * VPC endpoint to access Secret Manager
-   */
-  public readonly secretsManagerVpcEndpoint: ec2.VpcEndpoint;
-
-  /**
    * Managed Blockchain network VPC endpoint
    */
-  public readonly vpcEndpoint: ec2.VpcEndpoint;
+  public readonly vpcEndpoint: ec2.InterfaceVpcEndpoint;
 
   constructor(scope: network.HyperledgerFabricNetwork, id: string, props?: HyperledgerFabricClientProps) {
     super(scope, id);
@@ -59,10 +54,13 @@ export class HyperledgerFabricClient extends constructs.Construct {
 
     // Add a VPC endpoint to access the Managed Blockchain
     const vpcService = new ec2.InterfaceVpcEndpointService( vpcEndpointServiceName );
-    this.vpcEndpoint = this.vpc.addInterfaceEndpoint('LedgerEndpoint', { service: vpcService, open: false });
+    this.vpcEndpoint = this.vpc.addInterfaceEndpoint('LedgerEndpoint', { service: vpcService, open: false, privateDnsEnabled: true });
 
     // Add VPC endpoint to access the Secrets Manager
-    this.secretsManagerVpcEndpoint = this.vpc.addInterfaceEndpoint('SecretsManagerEndpoint', { service: ec2.InterfaceVpcEndpointAwsService.SECRETS_MANAGER });
+    this.vpc.addInterfaceEndpoint('SecretsManagerEndpoint', { service: ec2.InterfaceVpcEndpointAwsService.SECRETS_MANAGER });
+
+    // Add VPC endpoint to access the S3
+    this.vpc.addGatewayEndpoint('S3Endpoint', { service: ec2.GatewayVpcEndpointAwsService.S3 });
 
   }
 
