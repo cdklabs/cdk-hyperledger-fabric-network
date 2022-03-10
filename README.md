@@ -5,10 +5,9 @@
 ![PyPi:version](https://img.shields.io/pypi/v/cdk-hypderledger-fabric-network?color=blue&style=flat-square)
 ![license](https://img.shields.io/github/license/aws-samples/cdk-hyperledger-fabric-network?color=green&style=flat-square)
 
-This repository contains an L2 CDK construct to deploy a Hyperledger
-Fabric network running on Amazon Managed Blockchain. It currently builds
-out a member and its nodes, but the following enhanced functionality
-is planned for future releases:
+This repository contains a CDK construct to deploy a Hyperledger Fabric network
+running on Amazon Managed Blockchain. It currently builds out a member and its
+nodes, but the following enhanced functionality is planned for future releases:
 
 *  Add support for Java and .NET
 *  Enroll users, storing their credentials in Secrets Manager
