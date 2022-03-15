@@ -55,6 +55,22 @@ export const SUPPORTED_AVAILABILITY_ZONES: Record<string, Array<string>> = {
   ],
 };
 
+/*
+ * Starting port of the Network port range
+ */
+export const STARTING_PORT = 30001;
+
+/*
+ * Ending port of the Network port range
+ */
+export const ENDING_PORT = 30004;
+
+/*
+ * Returns the S3 Bucket and key that contains the TLS cert file
+ */
+export function getTlsBucket(region: string) {
+  return { bucketName: `${region}.managedblockchain`, key: 'etc/managedblockchain-tls-chain.pem' };
+}
 
 /*
  * Throw an error if provided region is not in the supported list

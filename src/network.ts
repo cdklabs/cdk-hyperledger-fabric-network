@@ -9,7 +9,9 @@ import * as customresources from 'aws-cdk-lib/custom-resources';
 import * as constructs from 'constructs';
 
 import * as client from './client';
+import * as identity from './identity';
 import * as node from './node';
+import * as user from './user';
 import * as utilities from './utilities';
 
 
@@ -122,6 +124,11 @@ export interface HyperledgerFabricNetworkProps {
    */
   readonly client?: client.HyperledgerFabricClientProps;
 
+  /**
+   * List of users to register with Fabric CA
+   */
+  readonly users?: Array<user.HyperledgerFabricUserProps>;
+
 }
 
 
@@ -231,6 +238,11 @@ export class HyperledgerFabricNetwork extends constructs.Construct {
    */
   public readonly client: client.HyperledgerFabricClient;
 
+  /**
+   * List of users registered with CA
+   */
+  public readonly users: Array<user.HyperledgerFabricUser>;
+
 
   constructor(scope: constructs.Construct, id: string, props: HyperledgerFabricNetworkProps) {
 
@@ -252,6 +264,7 @@ export class HyperledgerFabricNetwork extends constructs.Construct {
     this.thresholdPercentage = props.thresholdPercentage ?? 50;
     this.thresholdComparator = props.thresholdComparator ?? ThresholdComparator.GREATER_THAN;
     this.enableCaLogging = props.enableCaLogging ?? true;
+    this.users = [];
 
     // Ensure the parameters captured above are valid, so we don't
     // need to wait until deployment time to discover an error
@@ -273,6 +286,14 @@ export class HyperledgerFabricNetwork extends constructs.Construct {
     }
     if (!utilities.validateInteger(this.thresholdPercentage, 0, 100)) {
       throw new Error('Voting policy threshold percentage must be between 0 and 100.');
+    }
+
+    // Ensure the user affiliation includes the member name,
+    // if the user list for registration is provided
+    if (props.users) {
+      props.users.forEach(e => {
+        if (!e.affilitation.startsWith(this.memberName)) throw new Error('User affiliation is invalid. Affiliation should start with Member name');
+      });
     }
 
     // Per the Managed Blockchain documentation, the admin password must be at least eight
@@ -405,8 +426,16 @@ export class HyperledgerFabricNetwork extends constructs.Construct {
     }
 
     // Build out the client VPC construct
-    this.client = new client.HyperledgerFabricClient(this, 'Client', props.client);
+    this.client = new client.HyperledgerFabricClient(this, 'LedgerClient', props.client);
 
+    // Build out all the custom resources to register and enroll identities to CA
+    const identityResources = new identity.HyperledgerFabricIdentity(this, 'Identity');
+
+    // Enroll the administrator and store its credentials on Secrets Manager
+    new cdk.CustomResource(this, 'AdminCustomResource', { serviceToken: identityResources.adminProvider.serviceToken });
+
+    // Register and enroll users, if provided
+    if (props.users) this.users = Array.from(props.users.entries()).map(e => new user.HyperledgerFabricUser(this, `User${e[0]}`, e[1]));
   }
 
 }

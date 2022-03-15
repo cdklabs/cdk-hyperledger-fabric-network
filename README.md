@@ -6,13 +6,14 @@
 ![license](https://img.shields.io/github/license/aws-samples/cdk-hyperledger-fabric-network?color=green&style=flat-square)
 
 This repository contains a CDK construct to deploy a Hyperledger Fabric network
-running on Amazon Managed Blockchain. It currently builds out a member and its
-nodes, but the following enhanced functionality is planned for future releases:
+running on Amazon Managed Blockchain. It builds out a member and its nodes, a VPC
+and associated endpoint to access them, and a set of users enrolled on the network.
 
-*  Add support for Java and .NET
-*  Enroll users, storing their credentials in Secrets Manager
+The following functionality is planned for future releases:
+
 *  Create channels on nodes
 *  Instantiate chaincode on nodes
+*  Support for Java and .NET
 
 
 ## Installation
@@ -83,6 +84,10 @@ new HyperledgerFabricNetwork(this, 'Example', {
       availabilityZone: 'us-east-1b',
       instanceType: hyperledger.InstanceType.STANDARD5_LARGE,
     },
+  ],
+  users: [
+    { userId: 'AppUser1', affilitation: 'MyMember' },
+    { userId: 'AppUser2', affilitation: 'MyMember.department1' },
   ],
 });
 ```

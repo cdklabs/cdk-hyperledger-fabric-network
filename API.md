@@ -46,21 +46,8 @@ new HyperledgerFabricClient(scope: HyperledgerFabricNetwork, id: string, props?:
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| [`secretsManagerVpcEndpoint`](#cdkhyperledgerfabricnetworkhyperledgerfabricclientpropertysecretsmanagervpcendpoint)<span title="Required">*</span> | [`aws-cdk-lib.aws_ec2.VpcEndpoint`](#aws-cdk-lib.aws_ec2.VpcEndpoint) | VPC endpoint to access Secret Manager. |
 | [`vpc`](#cdkhyperledgerfabricnetworkhyperledgerfabricclientpropertyvpc)<span title="Required">*</span> | [`aws-cdk-lib.aws_ec2.IVpc`](#aws-cdk-lib.aws_ec2.IVpc) | The client VPC that has endpoint to access the Amazon Managed Blockchain. |
-| [`vpcEndpoint`](#cdkhyperledgerfabricnetworkhyperledgerfabricclientpropertyvpcendpoint)<span title="Required">*</span> | [`aws-cdk-lib.aws_ec2.VpcEndpoint`](#aws-cdk-lib.aws_ec2.VpcEndpoint) | Managed Blockchain network VPC endpoint. |
-
----
-
-##### `secretsManagerVpcEndpoint`<sup>Required</sup> <a name="cdk-hyperledger-fabric-network.HyperledgerFabricClient.property.secretsManagerVpcEndpoint" id="cdkhyperledgerfabricnetworkhyperledgerfabricclientpropertysecretsmanagervpcendpoint"></a>
-
-```typescript
-public readonly secretsManagerVpcEndpoint: VpcEndpoint;
-```
-
-- *Type:* [`aws-cdk-lib.aws_ec2.VpcEndpoint`](#aws-cdk-lib.aws_ec2.VpcEndpoint)
-
-VPC endpoint to access Secret Manager.
+| [`vpcEndpoint`](#cdkhyperledgerfabricnetworkhyperledgerfabricclientpropertyvpcendpoint)<span title="Required">*</span> | [`aws-cdk-lib.aws_ec2.InterfaceVpcEndpoint`](#aws-cdk-lib.aws_ec2.InterfaceVpcEndpoint) | Managed Blockchain network VPC endpoint. |
 
 ---
 
@@ -79,10 +66,10 @@ The client VPC that has endpoint to access the Amazon Managed Blockchain.
 ##### `vpcEndpoint`<sup>Required</sup> <a name="cdk-hyperledger-fabric-network.HyperledgerFabricClient.property.vpcEndpoint" id="cdkhyperledgerfabricnetworkhyperledgerfabricclientpropertyvpcendpoint"></a>
 
 ```typescript
-public readonly vpcEndpoint: VpcEndpoint;
+public readonly vpcEndpoint: InterfaceVpcEndpoint;
 ```
 
-- *Type:* [`aws-cdk-lib.aws_ec2.VpcEndpoint`](#aws-cdk-lib.aws_ec2.VpcEndpoint)
+- *Type:* [`aws-cdk-lib.aws_ec2.InterfaceVpcEndpoint`](#aws-cdk-lib.aws_ec2.InterfaceVpcEndpoint)
 
 Managed Blockchain network VPC endpoint.
 
@@ -152,6 +139,7 @@ new HyperledgerFabricNetwork(scope: Construct, id: string, props: HyperledgerFab
 | [`proposalDurationInHours`](#cdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropertyproposaldurationinhours)<span title="Required">*</span> | `number` | The duration from the time that a proposal is created until it expires. |
 | [`thresholdComparator`](#cdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropertythresholdcomparator)<span title="Required">*</span> | [`cdk-hyperledger-fabric-network.ThresholdComparator`](#cdk-hyperledger-fabric-network.ThresholdComparator) | Determines whether the yes votes must be greater than the threshold percentage or must be greater than or equal to the threhold percentage to be approved. |
 | [`thresholdPercentage`](#cdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropertythresholdpercentage)<span title="Required">*</span> | `number` | The percentage of votes among all members that must be yes for a proposal to be approved. |
+| [`users`](#cdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropertyusers)<span title="Required">*</span> | [`cdk-hyperledger-fabric-network.HyperledgerFabricUser`](#cdk-hyperledger-fabric-network.HyperledgerFabricUser)[] | List of users registered with CA. |
 | [`vpcEndpointServiceName`](#cdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropertyvpcendpointservicename)<span title="Required">*</span> | `string` | Managed Blockchain network VPC endpoint service name. |
 
 ---
@@ -381,6 +369,18 @@ public readonly thresholdPercentage: number;
 - *Type:* `number`
 
 The percentage of votes among all members that must be yes for a proposal to be approved.
+
+---
+
+##### `users`<sup>Required</sup> <a name="cdk-hyperledger-fabric-network.HyperledgerFabricNetwork.property.users" id="cdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropertyusers"></a>
+
+```typescript
+public readonly users: HyperledgerFabricUser[];
+```
+
+- *Type:* [`cdk-hyperledger-fabric-network.HyperledgerFabricUser`](#cdk-hyperledger-fabric-network.HyperledgerFabricUser)[]
+
+List of users registered with CA.
 
 ---
 
@@ -617,6 +617,106 @@ public readonly eventEndpoint: string;
 ---
 
 
+### HyperledgerFabricUser <a name="cdk-hyperledger-fabric-network.HyperledgerFabricUser" id="cdkhyperledgerfabricnetworkhyperledgerfabricuser"></a>
+
+Creates custom resources to register and enroll users identities with the CA using the fabric-ca-client SDK.
+
+#### Initializers <a name="cdk-hyperledger-fabric-network.HyperledgerFabricUser.Initializer" id="cdkhyperledgerfabricnetworkhyperledgerfabricuserinitializer"></a>
+
+```typescript
+import { HyperledgerFabricUser } from 'cdk-hyperledger-fabric-network'
+
+new HyperledgerFabricUser(scope: HyperledgerFabricNetwork, id: string, props: HyperledgerFabricUserProps)
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`scope`](#cdkhyperledgerfabricnetworkhyperledgerfabricuserparameterscope)<span title="Required">*</span> | [`cdk-hyperledger-fabric-network.HyperledgerFabricNetwork`](#cdk-hyperledger-fabric-network.HyperledgerFabricNetwork) | *No description.* |
+| [`id`](#cdkhyperledgerfabricnetworkhyperledgerfabricuserparameterid)<span title="Required">*</span> | `string` | *No description.* |
+| [`props`](#cdkhyperledgerfabricnetworkhyperledgerfabricuserparameterprops)<span title="Required">*</span> | [`cdk-hyperledger-fabric-network.HyperledgerFabricUserProps`](#cdk-hyperledger-fabric-network.HyperledgerFabricUserProps) | *No description.* |
+
+---
+
+##### `scope`<sup>Required</sup> <a name="cdk-hyperledger-fabric-network.HyperledgerFabricUser.parameter.scope" id="cdkhyperledgerfabricnetworkhyperledgerfabricuserparameterscope"></a>
+
+- *Type:* [`cdk-hyperledger-fabric-network.HyperledgerFabricNetwork`](#cdk-hyperledger-fabric-network.HyperledgerFabricNetwork)
+
+---
+
+##### `id`<sup>Required</sup> <a name="cdk-hyperledger-fabric-network.HyperledgerFabricUser.parameter.id" id="cdkhyperledgerfabricnetworkhyperledgerfabricuserparameterid"></a>
+
+- *Type:* `string`
+
+---
+
+##### `props`<sup>Required</sup> <a name="cdk-hyperledger-fabric-network.HyperledgerFabricUser.parameter.props" id="cdkhyperledgerfabricnetworkhyperledgerfabricuserparameterprops"></a>
+
+- *Type:* [`cdk-hyperledger-fabric-network.HyperledgerFabricUserProps`](#cdk-hyperledger-fabric-network.HyperledgerFabricUserProps)
+
+---
+
+
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`affiliation`](#cdkhyperledgerfabricnetworkhyperledgerfabricuserpropertyaffiliation)<span title="Required">*</span> | `string` | User's affiliation to the member. |
+| [`userId`](#cdkhyperledgerfabricnetworkhyperledgerfabricuserpropertyuserid)<span title="Required">*</span> | `string` | User ID registered with CA. |
+| [`userPrivateKeySecret`](#cdkhyperledgerfabricnetworkhyperledgerfabricuserpropertyuserprivatekeysecret)<span title="Required">*</span> | [`aws-cdk-lib.aws_secretsmanager.Secret`](#aws-cdk-lib.aws_secretsmanager.Secret) | Secret for user private key. |
+| [`userSignedCertSecret`](#cdkhyperledgerfabricnetworkhyperledgerfabricuserpropertyusersignedcertsecret)<span title="Required">*</span> | [`aws-cdk-lib.aws_secretsmanager.Secret`](#aws-cdk-lib.aws_secretsmanager.Secret) | Secret for user signed certificate. |
+
+---
+
+##### `affiliation`<sup>Required</sup> <a name="cdk-hyperledger-fabric-network.HyperledgerFabricUser.property.affiliation" id="cdkhyperledgerfabricnetworkhyperledgerfabricuserpropertyaffiliation"></a>
+
+```typescript
+public readonly affiliation: string;
+```
+
+- *Type:* `string`
+
+User's affiliation to the member.
+
+---
+
+##### `userId`<sup>Required</sup> <a name="cdk-hyperledger-fabric-network.HyperledgerFabricUser.property.userId" id="cdkhyperledgerfabricnetworkhyperledgerfabricuserpropertyuserid"></a>
+
+```typescript
+public readonly userId: string;
+```
+
+- *Type:* `string`
+
+User ID registered with CA.
+
+---
+
+##### `userPrivateKeySecret`<sup>Required</sup> <a name="cdk-hyperledger-fabric-network.HyperledgerFabricUser.property.userPrivateKeySecret" id="cdkhyperledgerfabricnetworkhyperledgerfabricuserpropertyuserprivatekeysecret"></a>
+
+```typescript
+public readonly userPrivateKeySecret: Secret;
+```
+
+- *Type:* [`aws-cdk-lib.aws_secretsmanager.Secret`](#aws-cdk-lib.aws_secretsmanager.Secret)
+
+Secret for user private key.
+
+---
+
+##### `userSignedCertSecret`<sup>Required</sup> <a name="cdk-hyperledger-fabric-network.HyperledgerFabricUser.property.userSignedCertSecret" id="cdkhyperledgerfabricnetworkhyperledgerfabricuserpropertyusersignedcertsecret"></a>
+
+```typescript
+public readonly userSignedCertSecret: Secret;
+```
+
+- *Type:* [`aws-cdk-lib.aws_secretsmanager.Secret`](#aws-cdk-lib.aws_secretsmanager.Secret)
+
+Secret for user signed certificate.
+
+---
+
+
 ## Structs <a name="Structs" id="structs"></a>
 
 ### HyperledgerFabricClientProps <a name="cdk-hyperledger-fabric-network.HyperledgerFabricClientProps" id="cdkhyperledgerfabricnetworkhyperledgerfabricclientprops"></a>
@@ -681,6 +781,7 @@ const hyperledgerFabricNetworkProps: HyperledgerFabricNetworkProps = { ... }
 | [`proposalDurationInHours`](#cdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropspropertyproposaldurationinhours) | `number` | The duration from the time that a proposal is created until it expires. |
 | [`thresholdComparator`](#cdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropspropertythresholdcomparator) | [`cdk-hyperledger-fabric-network.ThresholdComparator`](#cdk-hyperledger-fabric-network.ThresholdComparator) | Determines whether the yes votes must be greater than the threshold percentage or must be greater than or equal to the threhold percentage to be approved. |
 | [`thresholdPercentage`](#cdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropspropertythresholdpercentage) | `number` | The percentage of votes among all members that must be yes for a proposal to be approved. |
+| [`users`](#cdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropspropertyusers) | [`cdk-hyperledger-fabric-network.HyperledgerFabricUserProps`](#cdk-hyperledger-fabric-network.HyperledgerFabricUserProps)[] | List of users to register with Fabric CA. |
 
 ---
 
@@ -838,6 +939,18 @@ The percentage of votes among all members that must be yes for a proposal to be 
 
 ---
 
+##### `users`<sup>Optional</sup> <a name="cdk-hyperledger-fabric-network.HyperledgerFabricNetworkProps.property.users" id="cdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropspropertyusers"></a>
+
+```typescript
+public readonly users: HyperledgerFabricUserProps[];
+```
+
+- *Type:* [`cdk-hyperledger-fabric-network.HyperledgerFabricUserProps`](#cdk-hyperledger-fabric-network.HyperledgerFabricUserProps)[]
+
+List of users to register with Fabric CA.
+
+---
+
 ### HyperledgerFabricNodeProps <a name="cdk-hyperledger-fabric-network.HyperledgerFabricNodeProps" id="cdkhyperledgerfabricnetworkhyperledgerfabricnodeprops"></a>
 
 Construct properties for `HyperledgerFabricNode`.
@@ -910,6 +1023,53 @@ public readonly instanceType: InstanceType;
 - *Default:* BURSTABLE3_SMALL
 
 The Amazon Managed Blockchain instance type for the node.
+
+---
+
+### HyperledgerFabricUserProps <a name="cdk-hyperledger-fabric-network.HyperledgerFabricUserProps" id="cdkhyperledgerfabricnetworkhyperledgerfabricuserprops"></a>
+
+Construct properties for `HyperledgerFabricUser`.
+
+#### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
+
+```typescript
+import { HyperledgerFabricUserProps } from 'cdk-hyperledger-fabric-network'
+
+const hyperledgerFabricUserProps: HyperledgerFabricUserProps = { ... }
+```
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`affilitation`](#cdkhyperledgerfabricnetworkhyperledgerfabricuserpropspropertyaffilitation)<span title="Required">*</span> | `string` | User's affiliation to the member. |
+| [`userId`](#cdkhyperledgerfabricnetworkhyperledgerfabricuserpropspropertyuserid)<span title="Required">*</span> | `string` | User ID to register with CA. |
+
+---
+
+##### `affilitation`<sup>Required</sup> <a name="cdk-hyperledger-fabric-network.HyperledgerFabricUserProps.property.affilitation" id="cdkhyperledgerfabricnetworkhyperledgerfabricuserpropspropertyaffilitation"></a>
+
+```typescript
+public readonly affilitation: string;
+```
+
+- *Type:* `string`
+
+User's affiliation to the member.
+
+Should be hierarchical with member name as root(`MemberName.Dept1`).
+
+---
+
+##### `userId`<sup>Required</sup> <a name="cdk-hyperledger-fabric-network.HyperledgerFabricUserProps.property.userId" id="cdkhyperledgerfabricnetworkhyperledgerfabricuserpropspropertyuserid"></a>
+
+```typescript
+public readonly userId: string;
+```
+
+- *Type:* `string`
+
+User ID to register with CA.
 
 ---
 

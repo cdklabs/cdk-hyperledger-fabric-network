@@ -49,17 +49,17 @@ export class HyperledgerFabricClient extends constructs.Construct {
     this.vpc = props.vpc ?? new ec2.Vpc(this, 'ClientVpc', { subnetConfiguration: [{ name: 'Private', subnetType: ec2.SubnetType.PRIVATE_ISOLATED }] });
     const vpcEndpointServiceName = scope.vpcEndpointServiceName.replace(`com.amazonaws.${region}.`, '');
 
-    // Add VPC FlowLogs with the default setting of trafficType:ALL and destination: CloudWatch Logs
+    // Add VPC FlowLogs with the default setting of trafficType:ALL and destination:CloudWatchLogs
     this.vpc.addFlowLog('FlowLog');
 
     // Add a VPC endpoint to access the Managed Blockchain
     const vpcService = new ec2.InterfaceVpcEndpointService( vpcEndpointServiceName );
     this.vpcEndpoint = this.vpc.addInterfaceEndpoint('LedgerEndpoint', { service: vpcService, open: false, privateDnsEnabled: true });
 
-    // Add VPC endpoint to access the Secrets Manager
+    // Add VPC endpoint to access Secrets Manager
     this.vpc.addInterfaceEndpoint('SecretsManagerEndpoint', { service: ec2.InterfaceVpcEndpointAwsService.SECRETS_MANAGER });
 
-    // Add VPC endpoint to access the S3
+    // Add VPC endpoint to access S3
     this.vpc.addGatewayEndpoint('S3Endpoint', { service: ec2.GatewayVpcEndpointAwsService.S3 });
 
   }

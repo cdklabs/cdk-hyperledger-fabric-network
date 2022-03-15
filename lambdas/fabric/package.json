@@ -1,0 +1,14 @@
+{
+  "name": "fabric",
+  "version": "0.0.1",
+  "dependencies": {
+    "@aws-sdk/client-s3": "3.53.1",
+    "@aws-sdk/client-secrets-manager": "3.53.0",
+    "fabric-ca-client": "2.2.11",
+    "fabric-common": "2.2.11"
+  },
+  "devDependencies": {
+    "eslint": "^8.11.0",
+    "eslint-config-airbnb": "^19.0.4"
+  }
+}
