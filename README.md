@@ -1,9 +1,9 @@
 # Hyperledger Fabric on Amazon Managed Blockchain
 
-![release](https://img.shields.io/github/v/release/aws-samples/cdk-hyperledger-fabric-network?color=green&style=flat-square)
+![license](https://img.shields.io/github/license/cdklabs/cdk-hyperledger-fabric-network?color=green&style=flat-square)
+![release](https://img.shields.io/github/v/release/cdklabs/cdk-hyperledger-fabric-network?color=green&style=flat-square)
 ![npm:version](https://img.shields.io/npm/v/cdk-hyperledger-fabric-network?color=blue&style=flat-square)
 ![PyPi:version](https://img.shields.io/pypi/v/cdk-hypderledger-fabric-network?color=blue&style=flat-square)
-![license](https://img.shields.io/github/license/aws-samples/cdk-hyperledger-fabric-network?color=green&style=flat-square)
 
 This repository contains a CDK construct to deploy a Hyperledger Fabric network
 running on Amazon Managed Blockchain. It builds out a member and its nodes, a VPC
