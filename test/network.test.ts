@@ -169,6 +169,25 @@ describe('HyperledgerFabricNetwork', () => {
     expect(network.frameworkVersion).toBe(hyperledger.FrameworkVersion.VERSION_1_2);
   });
 
+  test('Create a network with framework version 2.2', () => {
+    const app = new cdk.App();
+    const stack = new cdk.Stack(app, 'TestStack', DEFAULT_ENV);
+    const network = new hyperledger.HyperledgerFabricNetwork(stack, 'TestHyperledgerFabricNetwork', {
+      networkName: 'TestNetwork',
+      memberName: 'TestMember',
+      frameworkVersion: hyperledger.FrameworkVersion.VERSION_2_2,
+    });
+    const template = assertions.Template.fromStack(stack);
+    template.hasResource('AWS::ManagedBlockchain::Member', {
+      Properties: {
+        NetworkConfiguration: {
+          FrameworkVersion: '2.2',
+        },
+      },
+    });
+    expect(network.frameworkVersion).toBe(hyperledger.FrameworkVersion.VERSION_2_2);
+  });
+
   test('Create network with users', () => {
     const app = new cdk.App();
     const stack = new cdk.Stack(app, 'TestStack', DEFAULT_ENV);
