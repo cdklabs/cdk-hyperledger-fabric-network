@@ -391,19 +391,14 @@ export class HyperledgerFabricNetwork extends constructs.Construct {
       onUpdate: memberDataSdkCall,
     });
 
-    // Cloudformation doesn't include logging configuration
-    // so use SDK call to configure
-    const logPublishingConfiguration = {
-      Fabric: {
-        CaLogs: {
-          Cloudwatch: { Enabled: this.enableCaLogging },
-        },
-      },
+    // Cloudformation doesn't include logging configuration so use SDK call to do so
+    const logConfiguration = {
+      Fabric: { CaLogs: { Cloudwatch: { Enabled: this.enableCaLogging } } },
     };
     const configureCaLogSdkCall = {
       service: 'ManagedBlockchain',
       action: 'updateMember',
-      parameters: { NetworkId: this.networkId, MemberId: this.memberId, LogPublishingConfiguration: logPublishingConfiguration },
+      parameters: { NetworkId: this.networkId, MemberId: this.memberId, LogPublishingConfiguration: logConfiguration },
       physicalResourceId: customresources.PhysicalResourceId.of('Id'),
     };
     new customresources.AwsCustomResource(this, 'ConfigureCaLogResource', {
@@ -419,14 +414,14 @@ export class HyperledgerFabricNetwork extends constructs.Construct {
 
     // As stated earlier, node constructs can't populate all their properties
     // until after the above network and member SDK calls succeed; thus the
-    // function calls below where the fetches are split out and logging is configured
+    // function calls below where fetches are split out and logging is configured
     for (const n of this.nodes) {
       n.configureLogging(sdkCallPolicy);
       n.fetchData(sdkCallPolicy);
     }
 
     // Build out the client VPC construct
-    this.client = new client.HyperledgerFabricClient(this, 'LedgerClient', props.client);
+    this.client = new client.HyperledgerFabricClient(this, 'NetworkClient', props.client);
 
     // Build out all the custom resources to register and enroll identities to CA
     const identityResources = new identity.HyperledgerFabricIdentity(this, 'Identity');

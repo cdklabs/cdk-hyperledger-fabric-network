@@ -54,7 +54,7 @@ export class HyperledgerFabricClient extends constructs.Construct {
 
     // Add a VPC endpoint to access the Managed Blockchain
     const vpcService = new ec2.InterfaceVpcEndpointService( vpcEndpointServiceName );
-    this.vpcEndpoint = this.vpc.addInterfaceEndpoint('LedgerEndpoint', { service: vpcService, open: false, privateDnsEnabled: true });
+    this.vpcEndpoint = this.vpc.addInterfaceEndpoint('NetworkEndpoint', { service: vpcService, open: false, privateDnsEnabled: true });
 
     // Add VPC endpoint to access Secrets Manager
     this.vpc.addInterfaceEndpoint('SecretsManagerEndpoint', { service: ec2.InterfaceVpcEndpointAwsService.SECRETS_MANAGER });
