@@ -1122,10 +1122,10 @@ available-typed-arrays@^1.0.5:
   resolved "https://registry.yarnpkg.com/available-typed-arrays/-/available-typed-arrays-1.0.5.tgz#92f95616501069d07d10edb2fc37d3e1c65123b7"
   integrity sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==
 
-aws-cdk-lib@2.14.0:
-  version "2.14.0"
-  resolved "https://registry.yarnpkg.com/aws-cdk-lib/-/aws-cdk-lib-2.14.0.tgz#aee4db9607a9a7560adc81088771f7a01a480f7e"
-  integrity sha512-hxKH+eQ9k1L+D6BBvD0HNRf3Y6vyOJ4e3N9E+IkJKkCXJvirUJW4QSqAEVDS+Es6aiIjvZCTNMNWyEbJYdDazQ==
+aws-cdk-lib@2.20.0:
+  version "2.20.0"
+  resolved "https://registry.yarnpkg.com/aws-cdk-lib/-/aws-cdk-lib-2.20.0.tgz#bb22702cc3748d8ed7eb42646f473ff740311bfe"
+  integrity sha512-jACK/1UJxtWWl6QH+I1V8Oc8F1EEL6aFQYk24DIrzNyB1Aj9LIs9/NyDu5zN00QFKrR6aDE7WAv1VG3sa6wWdg==
   dependencies:
     "@balena/dockerignore" "^1.0.2"
     case "1.6.3"
@@ -1360,10 +1360,10 @@ case@1.6.3, case@^1.6.3:
   resolved "https://registry.yarnpkg.com/case/-/case-1.6.3.tgz#0a4386e3e9825351ca2e6216c60467ff5f1ea1c9"
   integrity sha512-mzDSXIPaFwVDvZAHqZ9VlbyF4yyXRuX6IvB06WvPYkqJVO24kX1PPhv9bfpKNFZyxYFmmgo03HUiD8iklmJYRQ==
 
-cdk-nag@2.7.3:
-  version "2.7.3"
-  resolved "https://registry.yarnpkg.com/cdk-nag/-/cdk-nag-2.7.3.tgz#f1ba7a1ebf448f24bbbb9514196e7917614f55fe"
-  integrity sha512-mwIHVlkiVg2KP7oEwP7mPFogygNY05Vltxg3rkWsnsyLQkr4nFmbZ6hd6QA0Bc4q4rEAv9L2jioj4yPH0v+BSw==
+cdk-nag@2.12.20:
+  version "2.12.20"
+  resolved "https://registry.yarnpkg.com/cdk-nag/-/cdk-nag-2.12.20.tgz#d946354cb6ebb98d8f7d92ef8b8cca25e4d92a40"
+  integrity sha512-8Alwz4jk8o0Ls76XSU66CGgL3BJ33PGiZXTCCw1ah3NRANS/Q9wsYnC7plC7atky3ltpMlR8ECoqHNG39tmQuQ==
 
 chalk@^2.0.0, chalk@^2.4.2:
   version "2.4.2"
