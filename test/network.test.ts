@@ -6,6 +6,8 @@ import * as cdk from 'aws-cdk-lib';
 import * as assertions from 'aws-cdk-lib/assertions';
 import * as secretsmanager from 'aws-cdk-lib/aws-secretsmanager';
 
+import * as cdknag from 'cdk-nag';
+
 import * as hyperledger from '../src';
 
 
@@ -392,6 +394,24 @@ describe('HyperledgerFabricNetwork', () => {
       });
     };
     expect(invalidAffiliation).toThrow(Error);
+  });
+
+  test('No unexpected CDK nag errors occur in stack', () => {
+    const app = new cdk.App();
+    const stack = new cdk.Stack(app, 'TestStack', DEFAULT_ENV);
+    new hyperledger.HyperledgerFabricNetwork(stack, 'TestHyperledgerFabricNetwork', {
+      networkName: 'TestNetwork',
+      memberName: 'TestMember',
+    });
+    cdknag.NagSuppressions.addStackSuppressions(stack, [
+      { id: 'AwsSolutions-IAM4', reason: 'The CDK custom resource framework uses a managed policy for its Lambda' },
+      { id: 'AwsSolutions-IAM5', reason: 'The CDK custom resource framework creates default wildcard policies that are never used' },
+      { id: 'AwsSolutions-SMG4', reason: 'Secrets created for Managed Blockchain users do not support auto-rotation' },
+    ]);
+    cdk.Aspects.of(stack).add(new cdknag.AwsSolutionsChecks({ verbose: true }));
+    const annotations = assertions.Annotations.fromStack(stack);
+    const errors = annotations.findError('*', assertions.Match.stringLikeRegexp('AwsSolutions-.*'));
+    expect(errors).toHaveLength(0);
   });
 
 });
