@@ -331,13 +331,17 @@ export class HyperledgerFabricNetwork extends constructs.Construct {
         },
       },
     };
+
+    // Note the use of the unwrap below is the only possible way to get
+    // the secret value into the CloudFormation; it will still not directly
+    // be included in the synthesized template so usage here is still safe
     const memberConfiguration = {
       name: this.memberName,
       description: this.memberDescription,
       memberFrameworkConfiguration: {
         memberFabricConfiguration: {
           adminUsername: 'admin',
-          adminPassword: this.adminPasswordSecret.secretValue.toString(),
+          adminPassword: this.adminPasswordSecret.secretValue.unsafeUnwrap(),
         },
       },
     };
