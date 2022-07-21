@@ -44,7 +44,7 @@ class MyStack extends Stack {
       networkName: 'MyNetwork',
       memberName: 'MyMember',
     });
-  });
+  }
 }
 ```
 
@@ -118,6 +118,7 @@ See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more inform
 ## Authors
 
 *  Jud Neer (judneer@amazon.com)
+*  Vignesh Rajasingh (vrajasin@amazon.com)
 
 
 ## License
