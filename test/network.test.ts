@@ -425,6 +425,7 @@ describe('HyperledgerFabricNetwork', () => {
     cdknag.NagSuppressions.addStackSuppressions(stack, [
       { id: 'AwsSolutions-IAM4', reason: 'The CDK custom resource framework uses a managed policy for its Lambda' },
       { id: 'AwsSolutions-IAM5', reason: 'The CDK custom resource framework creates default wildcard policies that are never used' },
+      { id: 'AwsSolutions-L1', reason: 'The CDK custom resource framework currently uses Node.js 14 for its Lambda runtimes' },
       { id: 'AwsSolutions-SMG4', reason: 'Secrets created for Managed Blockchain users do not support auto-rotation' },
     ]);
     cdk.Aspects.of(stack).add(new cdknag.AwsSolutionsChecks({ verbose: true }));

@@ -4,8 +4,8 @@
   "dependencies": {
     "@aws-sdk/client-s3": "3.53.1",
     "@aws-sdk/client-secrets-manager": "3.53.0",
-    "fabric-ca-client": "2.2.11",
-    "fabric-common": "2.2.11"
+    "fabric-ca-client": "2.2.13",
+    "fabric-common": "2.2.13"
   },
   "devDependencies": {
     "eslint": "^8.11.0",
