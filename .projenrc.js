@@ -6,7 +6,7 @@ const { awscdk } = require('projen');
 
 
 const project = new awscdk.AwsCdkConstructLibrary({
-  name: 'cdk-hyperledger-fabric-network',
+  name: '@cdklabs/cdk-hyperledger-fabric-network',
   authorName: 'Amazon Web Services',
   authorUrl: 'https://aws.amazon.com',
   description: 'CDK construct to deploy a Hyperledger Fabric network running on Amazon Managed Blockchain',
@@ -20,6 +20,10 @@ const project = new awscdk.AwsCdkConstructLibrary({
     allowedUsernames: ['cdklabs-automation'],
     secret: 'GITHUB_TOKEN',
   },
+  peerDeps: [
+    'constructs',
+    'aws-cdk-lib',
+  ],
   devDeps: [
     'cdk-nag',
   ],
@@ -29,8 +33,18 @@ const project = new awscdk.AwsCdkConstructLibrary({
     '.jsii',
   ],
   publishToPypi: {
-    distName: 'cdk-hypderledger-fabric-network',
-    module: 'cdk_hyperledger_fabric_network',
+    distName: 'cdklabs.cdk-hypderledger-fabric-network',
+    module: 'cdklabs.cdk_hyperledger_fabric_network',
+  },
+  publishToMaven: {
+    javaPackage: 'io.github.cdklabs.cdkhypderledgerfabricnetwork',
+    mavenEndpoint: 'https://s01.oss.sonatype.org',
+    mavenArtifactId: 'cdk-hypderledger-fabric-network',
+    mavenGroupId: 'io.github.cdklabs',
+  },
+  publishToNuget: {
+    dotNetNamespace: 'Cdklabs.CdkHyperledgerFabricNetwork',
+    packageId: 'Cdklabs.CdkHyperledgerFabricNetwork',
   },
   keywords: [
     'aws',

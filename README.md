@@ -1,6 +1,11 @@
 # Hyperledger Fabric on Amazon Managed Blockchain
 
-NOTE: This package name is deprecated. Please use `@cdklabs/cdk-hyperledger-fabric-network` instead.
+![license](https://img.shields.io/github/license/cdklabs/cdk-hyperledger-fabric-network?color=green)
+![release](https://img.shields.io/github/v/release/cdklabs/cdk-hyperledger-fabric-network?color=green)
+![npm:version](https://img.shields.io/npm/v/@cdklabs/cdk-hyperledger-fabric-network?color=blue)
+![PyPi:version](https://img.shields.io/pypi/v/cdklabs.cdk-hypderledger-fabric-network?color=blue)
+![Maven:version](https://img.shields.io/maven-central/v/io.github.cdklabs/cdk-hypderledger-fabric-network?color=blue)
+![NuGet:version](https://img.shields.io/nuget/v/Cdklabs.CdkHyperledgerFabricNetwork?color=blue)
 
 This repository contains a CDK construct to deploy a Hyperledger Fabric network
 running on Amazon Managed Blockchain. It builds out a member and its nodes, a VPC
@@ -10,18 +15,40 @@ The following functionality is planned for future releases:
 
 *  Create channels on nodes
 *  Instantiate chaincode on nodes
-*  Support for Java and .NET
 
 
 ## Installation
 
-The construct is available for both TypeScript and Python CDK projects.
-It can be installed with the following:
-
-*  TypeScript: `npm install --save cdk-hyperledger-fabric-network`
-*  Python: `pip3 install cdk-hyperledger-fabric-network`
-
 Note that this construct requires [AWS CDK v2](https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html#getting_started_install).
+
+#### JavaScript
+
+```bash
+npm install --save @cdklabs/cdk-hyperledger-fabric-network
+```
+
+#### Python
+
+```bash
+pip3 install cdklabs.cdk-hyperledger-fabric-network
+```
+
+#### Java
+
+Add the following to `pom.xml`:
+
+```xml
+<dependency>
+  <groupId>io.github.cdklabs</groupId>
+  <artifactId>cdk-hypderledger-fabric-network</artifactId>
+</dependency>
+```
+
+#### .NET
+
+```bash
+dotnet add package Cdklabs.CdkHyperledgerFabricNetwork
+```
 
 
 ## Usage
@@ -32,7 +59,7 @@ will be created running Hyperledger Fabric 1.4 with a single `bc.t3.small` node.
 ```typescript
 import { Stack, StackProps } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
-import { HyperledgerFabricNetwork } from 'cdk-hyperledger-fabric-network';
+import { HyperledgerFabricNetwork } from '@cdklabs/cdk-hyperledger-fabric-network';
 
 class MyStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
@@ -49,7 +76,7 @@ The equivalent Python code is as follows:
 
 ```python
 from aws_cdk import Stack
-from cdk_hyperledger_fabric_network import HyperledgerFabricNetwork
+from cdklabs.cdk_hyperledger_fabric_network import HyperledgerFabricNetwork
 
 class MyStack(Stack):
     def __init__(self, scope, id, **kwargs):
