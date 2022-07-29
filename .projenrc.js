@@ -60,4 +60,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
 });
 
 
+const releaseWorkflow = project.tryFindObjectFile('.github/workflows/release.yml');
+releaseWorkflow.addOverride('jobs.release_npm.steps.6.env.NPM_ACCESS_LEVEL', 'public');
+
 project.synth();
