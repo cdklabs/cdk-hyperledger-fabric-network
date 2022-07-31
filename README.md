@@ -3,8 +3,8 @@
 ![license](https://img.shields.io/github/license/cdklabs/cdk-hyperledger-fabric-network?color=green)
 ![release](https://img.shields.io/github/v/release/cdklabs/cdk-hyperledger-fabric-network?color=green)
 ![npm:version](https://img.shields.io/npm/v/@cdklabs/cdk-hyperledger-fabric-network?color=blue)
-![PyPi:version](https://img.shields.io/pypi/v/cdklabs.cdk-hypderledger-fabric-network?color=blue)
-![Maven:version](https://img.shields.io/maven-central/v/io.github.cdklabs/cdk-hypderledger-fabric-network?color=blue)
+![PyPi:version](https://img.shields.io/pypi/v/cdklabs.cdk-hyperledger-fabric-network?color=blue)
+![Maven:version](https://img.shields.io/maven-central/v/io.github.cdklabs/cdk-hyperledger-fabric-network?color=blue&label=maven)
 ![NuGet:version](https://img.shields.io/nuget/v/Cdklabs.CdkHyperledgerFabricNetwork?color=blue)
 
 This repository contains a CDK construct to deploy a Hyperledger Fabric network
@@ -40,7 +40,7 @@ Add the following to `pom.xml`:
 ```xml
 <dependency>
   <groupId>io.github.cdklabs</groupId>
-  <artifactId>cdk-hypderledger-fabric-network</artifactId>
+  <artifactId>cdk-hyperledger-fabric-network</artifactId>
 </dependency>
 ```
 

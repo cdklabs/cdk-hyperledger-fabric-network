@@ -33,13 +33,13 @@ const project = new awscdk.AwsCdkConstructLibrary({
     '.jsii',
   ],
   publishToPypi: {
-    distName: 'cdklabs.cdk-hypderledger-fabric-network',
+    distName: 'cdklabs.cdk-hyperledger-fabric-network',
     module: 'cdklabs.cdk_hyperledger_fabric_network',
   },
   publishToMaven: {
-    javaPackage: 'io.github.cdklabs.cdkhypderledgerfabricnetwork',
+    javaPackage: 'io.github.cdklabs.cdkhyperledgerfabricnetwork',
     mavenEndpoint: 'https://s01.oss.sonatype.org',
-    mavenArtifactId: 'cdk-hypderledger-fabric-network',
+    mavenArtifactId: 'cdk-hyperledger-fabric-network',
     mavenGroupId: 'io.github.cdklabs',
   },
   publishToNuget: {

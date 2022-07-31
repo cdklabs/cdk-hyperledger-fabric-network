@@ -127,14 +127,14 @@
     "outdir": "dist",
     "targets": {
       "java": {
-        "package": "io.github.cdklabs.cdkhypderledgerfabricnetwork",
+        "package": "io.github.cdklabs.cdkhyperledgerfabricnetwork",
         "maven": {
           "groupId": "io.github.cdklabs",
-          "artifactId": "cdk-hypderledger-fabric-network"
+          "artifactId": "cdk-hyperledger-fabric-network"
         }
       },
       "python": {
-        "distName": "cdklabs.cdk-hypderledger-fabric-network",
+        "distName": "cdklabs.cdk-hyperledger-fabric-network",
         "module": "cdklabs.cdk_hyperledger_fabric_network"
       },
       "dotnet": {
