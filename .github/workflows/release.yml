@@ -95,7 +95,6 @@ jobs:
           NPM_DIST_TAG: latest
           NPM_REGISTRY: registry.npmjs.org
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NPM_ACCESS_LEVEL: public
   release_maven:
     name: Publish to Maven Central
     needs: release

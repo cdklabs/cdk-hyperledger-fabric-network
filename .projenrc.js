@@ -32,6 +32,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
     '.gitattributes',
     '.jsii',
   ],
+  npmAccess: 'public',
   publishToPypi: {
     distName: 'cdklabs.cdk-hyperledger-fabric-network',
     module: 'cdklabs.cdk_hyperledger_fabric_network',
@@ -59,8 +60,5 @@ const project = new awscdk.AwsCdkConstructLibrary({
   ],
 });
 
-
-const releaseWorkflow = project.tryFindObjectFile('.github/workflows/release.yml');
-releaseWorkflow.addOverride('jobs.release_npm.steps.6.env.NPM_ACCESS_LEVEL', 'public');
 
 project.synth();
