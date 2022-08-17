@@ -1,6 +1,7 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: MIT-0
 
+import { execSync } from 'child_process';
 import * as path from 'path';
 import * as cdk from 'aws-cdk-lib';
 import * as ec2 from 'aws-cdk-lib/aws-ec2';
@@ -70,11 +71,36 @@ export class HyperledgerFabricIdentity extends constructs.Construct {
       ],
     }));
 
-    // Lambda function to enroll the admin and import credentials to secrets manager
+    const lambdaDirectory = '../lambdas/fabric';
+
+    // Have to use docker local bundling as esbuild doesn't resolve the path on the fabric-proto package
+    const codeProp = {
+      bundling: {
+        image: lambda.Runtime.NODEJS_14_X.bundlingImage,
+        command: [
+          'bash', '-c', 'cp -a . /asset-output',
+          'npm install --prefix /asset-output',
+        ],
+        local: {
+          tryBundle(outputDir: string) {
+            try {
+              execSync('npm --version');
+              execSync(`cp -a ${path.join(__dirname, lambdaDirectory)}/. ${outputDir}`);
+              execSync(`npm install --prefix ${outputDir}`);
+            } catch {
+              return false;
+            }
+            return true;
+          },
+        },
+      },
+    };
+
+    // Lambda function to enroll the admin and import credentials to secrets manager.
     const adminFunction = new lambda.Function(this, 'AdminFunction', {
       runtime: lambda.Runtime.NODEJS_14_X,
       handler: 'enroll-admin.handler',
-      code: lambda.Code.fromAsset(path.join(__dirname, '../lambdas/fabric')),
+      code: lambda.Code.fromAsset(path.join(__dirname, lambdaDirectory), codeProp),
       environment: {
         ADMIN_PASSWORD_ARN: adminPasswordArn,
         CA_ENDPOINT: caEndpoint,
@@ -102,11 +128,11 @@ export class HyperledgerFabricIdentity extends constructs.Construct {
     });
 
     // Lambda function to register and enroll users and
-    // import credentials to secrets manager
+    // import credentials to secrets manager.
     const userFunction = new lambda.Function(scope, 'UserFunction', {
       runtime: lambda.Runtime.NODEJS_14_X,
       handler: 'register-user.handler',
-      code: lambda.Code.fromAsset(path.join(__dirname, '../lambdas/fabric')),
+      code: lambda.Code.fromAsset(path.join(__dirname, lambdaDirectory), codeProp),
       environment: {
         CA_ENDPOINT: caEndpoint,
         MEMBER_NAME: memberName,
