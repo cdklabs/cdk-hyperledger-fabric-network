@@ -229,6 +229,32 @@ describe('HyperledgerFabricNetwork', () => {
     expect(network.enableCaLogging).toBe(true);
   });
 
+  test('Create network without admin enrollment', () => {
+    const app = new cdk.App({ context });
+    const stack = new cdk.Stack(app, 'TestStack', DEFAULT_ENV);
+    const network = new hyperledger.HyperledgerFabricNetwork(stack, 'TestHyperledgerFabricNetwork', {
+      networkName: 'TestNetwork',
+      memberName: 'TestMember',
+      enrollAdmin: false,
+    });
+
+    expect(network.enrollAdmin).toBe(false);
+
+    const template = assertions.Template.fromStack(stack);
+    const enrollLambda = template.findResources('AWS::Lambda::Function', {
+      Properties: {
+        Environment: {
+          Variables: {
+            TLS_CERT_BUCKET: 'us-east-1.managedblockchain',
+            TLS_CERT_KEY: 'etc/managedblockchain-tls-chain.pem',
+          },
+        },
+        Handler: 'enroll-admin.handler',
+      },
+    });
+    expect(Object.keys(enrollLambda).length).toBe(0);
+  });
+
   test('Fail to create a network in an unsupported region', () => {
     expect(hyperledger.SUPPORTED_REGIONS).not.toContain('us-west-1');
     const unsupportedRegion = () => {
@@ -401,6 +427,22 @@ describe('HyperledgerFabricNetwork', () => {
     expect(thresholdTooSmall).toThrow(Error);
     expect(thresholdTooLarge).toThrow(Error);
     expect(thresholdNotInteger).toThrow(Error);
+  });
+
+  test('Fail to create a network with users to register and disabled admin enrollment ', () => {
+    const adminNotEnrolled = () => {
+      const app = new cdk.App({ context });
+      const stack = new cdk.Stack(app, 'TestStack', DEFAULT_ENV);
+      new hyperledger.HyperledgerFabricNetwork(stack, 'TestHyperledgerFabricNetwork', {
+        networkName: 'TestNetwork',
+        memberName: 'TestMember',
+        enrollAdmin: false,
+        users: [
+          { userId: 'TestUser', affilitation: 'department1' },
+        ],
+      });
+    };
+    expect(adminNotEnrolled).toThrow(Error);
   });
 
   test('Fail to create a network with invalid user affiliation', () => {

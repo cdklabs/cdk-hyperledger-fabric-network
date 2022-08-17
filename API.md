@@ -126,6 +126,7 @@ new HyperledgerFabricNetwork(scope: Construct, id: string, props: HyperledgerFab
 | [`caEndpoint`](#cdklabscdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropertycaendpoint)<span title="Required">*</span> | `string` | Managed Blockchain member CA endpoint. |
 | [`client`](#cdklabscdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropertyclient)<span title="Required">*</span> | [`@cdklabs/cdk-hyperledger-fabric-network.HyperledgerFabricClient`](#@cdklabs/cdk-hyperledger-fabric-network.HyperledgerFabricClient) | The client network to interact with the Hyperledger Fabric network. |
 | [`enableCaLogging`](#cdklabscdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropertyenablecalogging)<span title="Required">*</span> | `boolean` | The configuration to enable or disable certificate authority logging. |
+| [`enrollAdmin`](#cdklabscdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropertyenrolladmin)<span title="Required">*</span> | `boolean` | Configuration to enable/disable admin user enrollment. |
 | [`frameworkVersion`](#cdklabscdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropertyframeworkversion)<span title="Required">*</span> | [`@cdklabs/cdk-hyperledger-fabric-network.FrameworkVersion`](#@cdklabs/cdk-hyperledger-fabric-network.FrameworkVersion) | Hyperledger Fabric framework version. |
 | [`memberDescription`](#cdklabscdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropertymemberdescription)<span title="Required">*</span> | `string` | Managed Blockchain member description. |
 | [`memberId`](#cdklabscdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropertymemberid)<span title="Required">*</span> | `string` | Managed Blockchain member identifier generated on construction. |
@@ -213,6 +214,18 @@ public readonly enableCaLogging: boolean;
 - *Type:* `boolean`
 
 The configuration to enable or disable certificate authority logging.
+
+---
+
+##### `enrollAdmin`<sup>Required</sup> <a name="@cdklabs/cdk-hyperledger-fabric-network.HyperledgerFabricNetwork.property.enrollAdmin" id="cdklabscdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropertyenrolladmin"></a>
+
+```typescript
+public readonly enrollAdmin: boolean;
+```
+
+- *Type:* `boolean`
+
+Configuration to enable/disable admin user enrollment.
 
 ---
 
@@ -773,6 +786,7 @@ const hyperledgerFabricNetworkProps: HyperledgerFabricNetworkProps = { ... }
 | [`networkName`](#cdklabscdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropspropertynetworkname)<span title="Required">*</span> | `string` | Managed Blockchain network name. |
 | [`client`](#cdklabscdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropspropertyclient) | [`@cdklabs/cdk-hyperledger-fabric-network.HyperledgerFabricClientProps`](#@cdklabs/cdk-hyperledger-fabric-network.HyperledgerFabricClientProps) | The Client network to interact with the Hyperledger Fabric network. |
 | [`enableCaLogging`](#cdklabscdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropspropertyenablecalogging) | `boolean` | The configuration to enable or disable certificate authority logging. |
+| [`enrollAdmin`](#cdklabscdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropspropertyenrolladmin) | `boolean` | Configuration to enable/disable enrollment of admin user. |
 | [`frameworkVersion`](#cdklabscdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropspropertyframeworkversion) | [`@cdklabs/cdk-hyperledger-fabric-network.FrameworkVersion`](#@cdklabs/cdk-hyperledger-fabric-network.FrameworkVersion) | Hyperledger Fabric framework version. |
 | [`memberDescription`](#cdklabscdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropspropertymemberdescription) | `string` | Managed Blockchain member description. |
 | [`networkDescription`](#cdklabscdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropspropertynetworkdescription) | `string` | Managed Blockchain network description. |
@@ -781,7 +795,7 @@ const hyperledgerFabricNetworkProps: HyperledgerFabricNetworkProps = { ... }
 | [`proposalDurationInHours`](#cdklabscdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropspropertyproposaldurationinhours) | `number` | The duration from the time that a proposal is created until it expires. |
 | [`thresholdComparator`](#cdklabscdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropspropertythresholdcomparator) | [`@cdklabs/cdk-hyperledger-fabric-network.ThresholdComparator`](#@cdklabs/cdk-hyperledger-fabric-network.ThresholdComparator) | Determines whether the yes votes must be greater than the threshold percentage or must be greater than or equal to the threhold percentage to be approved. |
 | [`thresholdPercentage`](#cdklabscdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropspropertythresholdpercentage) | `number` | The percentage of votes among all members that must be yes for a proposal to be approved. |
-| [`users`](#cdklabscdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropspropertyusers) | [`@cdklabs/cdk-hyperledger-fabric-network.HyperledgerFabricUserProps`](#@cdklabs/cdk-hyperledger-fabric-network.HyperledgerFabricUserProps)[] | List of users to register with Fabric CA. |
+| [`users`](#cdklabscdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropspropertyusers) | [`@cdklabs/cdk-hyperledger-fabric-network.HyperledgerFabricUserProps`](#@cdklabs/cdk-hyperledger-fabric-network.HyperledgerFabricUserProps)[] | List of users to register with Fabric CA Note: enrollAdmin property has to be enabled for registering users. |
 
 ---
 
@@ -832,6 +846,19 @@ public readonly enableCaLogging: boolean;
 - *Default:* true
 
 The configuration to enable or disable certificate authority logging.
+
+---
+
+##### `enrollAdmin`<sup>Optional</sup> <a name="@cdklabs/cdk-hyperledger-fabric-network.HyperledgerFabricNetworkProps.property.enrollAdmin" id="cdklabscdkhyperledgerfabricnetworkhyperledgerfabricnetworkpropspropertyenrolladmin"></a>
+
+```typescript
+public readonly enrollAdmin: boolean;
+```
+
+- *Type:* `boolean`
+- *Default:* true
+
+Configuration to enable/disable enrollment of admin user.
 
 ---
 
@@ -947,7 +974,7 @@ public readonly users: HyperledgerFabricUserProps[];
 
 - *Type:* [`@cdklabs/cdk-hyperledger-fabric-network.HyperledgerFabricUserProps`](#@cdklabs/cdk-hyperledger-fabric-network.HyperledgerFabricUserProps)[]
 
-List of users to register with Fabric CA.
+List of users to register with Fabric CA Note: enrollAdmin property has to be enabled for registering users.
 
 ---
 
