@@ -12,10 +12,14 @@ const DEFAULT_ENV = { env: { region: 'us-east-1' } };
 
 const TOKEN_REGEXP = /^\$\{Token\[TOKEN\.[0-9]+\]\}$/;
 
+const context = {
+  'aws:cdk:bundling-stacks': [],
+};
+
 describe('HyperledgerFabricClient', () => {
 
   test('Create a client network with default properties', () => {
-    const app = new cdk.App();
+    const app = new cdk.App({ context });
     const stack = new cdk.Stack(app, 'TestStack', DEFAULT_ENV);
     const network = new hyperledger.HyperledgerFabricNetwork(stack, 'TestHyperledgerFabricNetwork', {
       networkName: 'TestNetwork',
@@ -40,7 +44,7 @@ describe('HyperledgerFabricClient', () => {
   });
 
   test('Create endpoints on existing a client network ', () => {
-    const app = new cdk.App();
+    const app = new cdk.App({ context });
     const stack = new cdk.Stack(app, 'TestStack', DEFAULT_ENV);
     const vpc = new ec2.Vpc(stack, 'ClientVpc', {
       cidr: '40.0.0.0/16',

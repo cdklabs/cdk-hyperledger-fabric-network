@@ -12,11 +12,14 @@ const DEFAULT_ENV = { env: { region: 'us-east-1' } };
 
 const TOKEN_REGEXP = /^\$\{Token\[TOKEN\.[0-9]+\]\}$/;
 
+const context = {
+  'aws:cdk:bundling-stacks': [],
+};
 
 describe('HyperledgerFabricNode', () => {
 
   test('Create a network with the default node configuration', () => {
-    const app = new cdk.App();
+    const app = new cdk.App({ context });
     const stack = new cdk.Stack(app, 'TestStack', DEFAULT_ENV);
     const network = new hyperledger.HyperledgerFabricNetwork(stack, 'TestHyperledgerFabricNetwork', {
       networkName: 'TestNetwork',
@@ -43,7 +46,7 @@ describe('HyperledgerFabricNode', () => {
   });
 
   test('Create a network without any nodes', () => {
-    const app = new cdk.App();
+    const app = new cdk.App({ context });
     const stack = new cdk.Stack(app, 'TestStack', DEFAULT_ENV);
     const network = new hyperledger.HyperledgerFabricNetwork(stack, 'TestHyperledgerFabricNetwork', {
       networkName: 'TestNetwork',
@@ -56,7 +59,7 @@ describe('HyperledgerFabricNode', () => {
   });
 
   test('Create a node separate from a network', () => {
-    const app = new cdk.App();
+    const app = new cdk.App({ context });
     const stack = new cdk.Stack(app, 'TestStack', DEFAULT_ENV);
     const network = new hyperledger.HyperledgerFabricNetwork(stack, 'TestHyperledgerFabricNetwork', {
       networkName: 'TestNetwork',
@@ -72,7 +75,7 @@ describe('HyperledgerFabricNode', () => {
   });
 
   test('Create a network with custom nodes', () => {
-    const app = new cdk.App();
+    const app = new cdk.App({ context });
     const stack = new cdk.Stack(app, 'TestStack', DEFAULT_ENV);
     const network = new hyperledger.HyperledgerFabricNetwork(stack, 'TestHyperledgerFabricNetwork', {
       networkName: 'TestNetwork',
@@ -128,7 +131,7 @@ describe('HyperledgerFabricNode', () => {
   });
 
   test('Create a starter network with the default node configuration', () => {
-    const app = new cdk.App();
+    const app = new cdk.App({ context });
     const stack = new cdk.Stack(app, 'TestStack', DEFAULT_ENV);
     const network = new hyperledger.HyperledgerFabricNetwork(stack, 'TestHyperledgerFabricNetwork', {
       networkName: 'TestNetwork',
@@ -154,7 +157,7 @@ describe('HyperledgerFabricNode', () => {
   });
 
   test('Create a starter network with custom node configuration', () => {
-    const app = new cdk.App();
+    const app = new cdk.App({ context });
     const stack = new cdk.Stack(app, 'TestStack', DEFAULT_ENV);
     const network = new hyperledger.HyperledgerFabricNetwork(stack, 'TestHyperledgerFabricNetwork', {
       networkName: 'TestNetwork',
@@ -199,7 +202,7 @@ describe('HyperledgerFabricNode', () => {
   test('Fail to create a network with an invalid node availability zone', () => {
     expect(hyperledger.SUPPORTED_AVAILABILITY_ZONES).not.toContain('us-west-1a');
     const mismatchedAvailabilityZone = () => {
-      const app = new cdk.App();
+      const app = new cdk.App({ context });
       const stack = new cdk.Stack(app, 'TestStack', DEFAULT_ENV);
       new hyperledger.HyperledgerFabricNetwork(stack, 'TestHyperledgerFabricNetwork', {
         networkName: 'TestNetwork',
@@ -213,7 +216,7 @@ describe('HyperledgerFabricNode', () => {
     };
     expect(hyperledger.SUPPORTED_AVAILABILITY_ZONES['us-east-1']).not.toContain('us-east-1z');
     const nonexistantAvailabilityZone = () => {
-      const app = new cdk.App();
+      const app = new cdk.App({ context });
       const stack = new cdk.Stack(app, 'TestStack', DEFAULT_ENV);
       new hyperledger.HyperledgerFabricNetwork(stack, 'TestHyperledgerFabricNetwork', {
         networkName: 'TestNetwork',
@@ -231,7 +234,7 @@ describe('HyperledgerFabricNode', () => {
 
   test('Fail to create a network with too many nodes', () => {
     const unsupportedInstanceType = () => {
-      const app = new cdk.App();
+      const app = new cdk.App({ context });
       const stack = new cdk.Stack(app, 'TestStack', DEFAULT_ENV);
       new hyperledger.HyperledgerFabricNetwork(stack, 'TestHyperledgerFabricNetwork', {
         networkName: 'TestNetwork',
@@ -244,7 +247,7 @@ describe('HyperledgerFabricNode', () => {
 
   test('Fail to create a starter network with too many nodes', () => {
     const unsupportedInstanceType = () => {
-      const app = new cdk.App();
+      const app = new cdk.App({ context });
       const stack = new cdk.Stack(app, 'TestStack', DEFAULT_ENV);
       new hyperledger.HyperledgerFabricNetwork(stack, 'TestHyperledgerFabricNetwork', {
         networkName: 'TestNetwork',
@@ -259,7 +262,7 @@ describe('HyperledgerFabricNode', () => {
   test('Fail to create a starter network with an unsupported instance type', () => {
     expect(hyperledger.STARTER_INSTANCE_TYPES).not.toContain(hyperledger.InstanceType.STANDARD5_LARGE);
     const unsupportedInstanceType = () => {
-      const app = new cdk.App();
+      const app = new cdk.App({ context });
       const stack = new cdk.Stack(app, 'TestStack', DEFAULT_ENV);
       new hyperledger.HyperledgerFabricNetwork(stack, 'TestHyperledgerFabricNetwork', {
         networkName: 'TestNetwork',
@@ -276,7 +279,7 @@ describe('HyperledgerFabricNode', () => {
   });
 
   test('Create network with node logging disabled', () => {
-    const app = new cdk.App();
+    const app = new cdk.App({ context });
     const stack = new cdk.Stack(app, 'TestStack', DEFAULT_ENV);
     const network = new hyperledger.HyperledgerFabricNetwork(stack, 'TestHyperledgerFabricNetwork', {
       networkName: 'TestNetwork',
@@ -291,7 +294,7 @@ describe('HyperledgerFabricNode', () => {
     expect(network.nodes[0].enableNodeLogging).toBe(false);
   });
   test('Create network with node logging enabled', () => {
-    const app = new cdk.App();
+    const app = new cdk.App({ context });
     const stack = new cdk.Stack(app, 'TestStack', DEFAULT_ENV);
     const network = new hyperledger.HyperledgerFabricNetwork(stack, 'TestHyperledgerFabricNetwork', {
       networkName: 'TestNetwork',
@@ -307,7 +310,7 @@ describe('HyperledgerFabricNode', () => {
   });
 
   test('Create network with chaincode logging disabled', () => {
-    const app = new cdk.App();
+    const app = new cdk.App({ context });
     const stack = new cdk.Stack(app, 'TestStack', DEFAULT_ENV);
     const network = new hyperledger.HyperledgerFabricNetwork(stack, 'TestHyperledgerFabricNetwork', {
       networkName: 'TestNetwork',
@@ -323,7 +326,7 @@ describe('HyperledgerFabricNode', () => {
   });
 
   test('Create network with chaincode logging enabled', () => {
-    const app = new cdk.App();
+    const app = new cdk.App({ context });
     const stack = new cdk.Stack(app, 'TestStack', DEFAULT_ENV);
     const network = new hyperledger.HyperledgerFabricNetwork(stack, 'TestHyperledgerFabricNetwork', {
       networkName: 'TestNetwork',

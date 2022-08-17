@@ -9,10 +9,14 @@ import * as hyperledger from '../src';
 
 const DEFAULT_ENV = { env: { region: 'us-east-1' } };
 
+const context = {
+  'aws:cdk:bundling-stacks': [],
+};
+
 describe('HyperledgerFabricUser', () => {
 
   test('Register user identity from network', () => {
-    const app = new cdk.App();
+    const app = new cdk.App({ context });
     const stack = new cdk.Stack(app, 'TestStack', DEFAULT_ENV);
     const network = new hyperledger.HyperledgerFabricNetwork(stack, 'TestHyperledgerFabricNetwork', {
       networkName: 'TestNetwork',
@@ -33,14 +37,13 @@ describe('HyperledgerFabricUser', () => {
             TLS_CERT_KEY: 'etc/managedblockchain-tls-chain.pem',
           },
         },
-        Handler: 'register-user.handler',
-        Runtime: 'nodejs14.x',
+        Handler: 'enroll-admin.handler',
       },
     });
   });
 
   test('Register user identity separate from network', () => {
-    const app = new cdk.App();
+    const app = new cdk.App({ context });
     const stack = new cdk.Stack(app, 'TestStack', DEFAULT_ENV);
     const network = new hyperledger.HyperledgerFabricNetwork(stack, 'TestHyperledgerFabricNetwork', {
       networkName: 'TestNetwork',
@@ -61,14 +64,13 @@ describe('HyperledgerFabricUser', () => {
             TLS_CERT_KEY: 'etc/managedblockchain-tls-chain.pem',
           },
         },
-        Handler: 'register-user.handler',
-        Runtime: 'nodejs14.x',
+        Handler: 'enroll-admin.handler',
       },
     });
   });
 
   test('Register user identity from network and separately', () => {
-    const app = new cdk.App();
+    const app = new cdk.App({ context });
     const stack = new cdk.Stack(app, 'TestStack', DEFAULT_ENV);
     const network = new hyperledger.HyperledgerFabricNetwork(stack, 'TestHyperledgerFabricNetwork', {
       networkName: 'TestNetwork',
@@ -96,15 +98,14 @@ describe('HyperledgerFabricUser', () => {
             TLS_CERT_KEY: 'etc/managedblockchain-tls-chain.pem',
           },
         },
-        Handler: 'register-user.handler',
-        Runtime: 'nodejs14.x',
+        Handler: 'enroll-admin.handler',
       },
     });
   });
 
   test('Fail to register user identity separate from network when affiliation is invalid', () => {
     const invalidAffiliation = () => {
-      const app = new cdk.App();
+      const app = new cdk.App({ context });
       const stack = new cdk.Stack(app, 'TestStack', DEFAULT_ENV);
       const network = new hyperledger.HyperledgerFabricNetwork(stack, 'TestHyperledgerFabricNetwork', {
         networkName: 'TestNetwork',
