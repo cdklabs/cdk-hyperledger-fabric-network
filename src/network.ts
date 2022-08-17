@@ -125,7 +125,14 @@ export interface HyperledgerFabricNetworkProps {
   readonly client?: client.HyperledgerFabricClientProps;
 
   /**
+   * Configuration to enable/disable enrollment of admin user
+   * @default - true
+   */
+  readonly enrollAdmin?: boolean;
+
+  /**
    * List of users to register with Fabric CA
+   * Note: enrollAdmin property has to be enabled for registering users
    */
   readonly users?: Array<user.HyperledgerFabricUserProps>;
 
@@ -239,6 +246,11 @@ export class HyperledgerFabricNetwork extends constructs.Construct {
   public readonly client: client.HyperledgerFabricClient;
 
   /**
+   * Configuration to enable/disable admin user enrollment
+   */
+  public readonly enrollAdmin: boolean;
+
+  /**
    * List of users registered with CA
    */
   public readonly users: Array<user.HyperledgerFabricUser>;
@@ -264,6 +276,7 @@ export class HyperledgerFabricNetwork extends constructs.Construct {
     this.thresholdPercentage = props.thresholdPercentage ?? 50;
     this.thresholdComparator = props.thresholdComparator ?? ThresholdComparator.GREATER_THAN;
     this.enableCaLogging = props.enableCaLogging ?? true;
+    this.enrollAdmin = props.enrollAdmin ?? true;
     this.users = [];
 
     // Ensure the parameters captured above are valid, so we don't
@@ -286,6 +299,12 @@ export class HyperledgerFabricNetwork extends constructs.Construct {
     }
     if (!utilities.validateInteger(this.thresholdPercentage, 0, 100)) {
       throw new Error('Voting policy threshold percentage must be between 0 and 100.');
+    }
+
+    // Ensure the users property is not defined,
+    // if the enrollAdmin property is disabled
+    if (!this.enrollAdmin && props.users) {
+      throw new Error('Enroll admin property has to be enabled for registering users');
     }
 
     // Ensure the user affiliation includes the member name,
@@ -427,14 +446,18 @@ export class HyperledgerFabricNetwork extends constructs.Construct {
     // Build out the client VPC construct
     this.client = new client.HyperledgerFabricClient(this, 'NetworkClient', props.client);
 
-    // Build out all the custom resources to register and enroll identities to CA
-    const identityResources = new identity.HyperledgerFabricIdentity(this, 'Identity');
+    // Enroll admin and users, if enabled
+    if (this.enrollAdmin) {
+      // Build out all the custom resources to register and enroll identities to CA
+      const identityResources = new identity.HyperledgerFabricIdentity(this, 'Identity');
 
-    // Enroll the administrator and store its credentials on Secrets Manager
-    new cdk.CustomResource(this, 'AdminCustomResource', { serviceToken: identityResources.adminProvider.serviceToken });
+      // Enroll the administrator and store its credentials on Secrets Manager
+      new cdk.CustomResource(this, 'AdminCustomResource', { serviceToken: identityResources.adminProvider.serviceToken });
 
-    // Register and enroll users, if provided
-    if (props.users) this.users = Array.from(props.users.entries()).map(e => new user.HyperledgerFabricUser(this, `User${e[0]}`, e[1]));
+      // Register and enroll users, if provided
+      if (props.users) this.users = Array.from(props.users.entries()).map(e => new user.HyperledgerFabricUser(this, `User${e[0]}`, e[1]));
+    }
+
   }
 
 }
