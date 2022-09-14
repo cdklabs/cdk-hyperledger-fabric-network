@@ -14,7 +14,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   copyrightOwner: 'Amazon.com, Inc. or its affiliates. All Rights Reserved.',
   defaultReleaseBranch: 'main',
   repositoryUrl: 'https://github.com/cdklabs/cdk-hyperledger-fabric-network.git',
-  cdkVersion: '2.33.0',
+  cdkVersion: '2.24.1',
   autoApproveUpgrades: true,
   autoApproveOptions: {
     allowedUsernames: ['cdklabs-automation'],

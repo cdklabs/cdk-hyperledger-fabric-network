@@ -76,7 +76,7 @@ export interface HyperledgerFabricNodeProps {
  */
 export class HyperledgerFabricNode extends constructs.Construct {
 
-  /*
+  /**
    * Build out a list of HyperledgerFabricNode constructs given a list of input property
    * objects; additionally checks to ensure node count is supported given the network type
    */
@@ -175,7 +175,7 @@ export class HyperledgerFabricNode extends constructs.Construct {
 
   }
 
-  /*
+  /**
    * Configure logging for the node via SDK call; this function
    * should be merged back into the constructor once the race condition is solved
    */
@@ -212,7 +212,7 @@ export class HyperledgerFabricNode extends constructs.Construct {
     });
   }
 
-  /*
+  /**
    * Populate the output properties that must be fetched via SDK call; this function
    * should be merged back into the constructor once the race condition is solved
    */

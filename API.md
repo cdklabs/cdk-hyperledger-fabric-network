@@ -452,8 +452,8 @@ new HyperledgerFabricNode(scope: HyperledgerFabricNetwork, id: string, props?: H
 
 | **Name** | **Description** |
 | --- | --- |
-| [`configureLogging`](#cdklabscdkhyperledgerfabricnetworkhyperledgerfabricnodeconfigurelogging) | *No description.* |
-| [`fetchData`](#cdklabscdkhyperledgerfabricnetworkhyperledgerfabricnodefetchdata) | *No description.* |
+| [`configureLogging`](#cdklabscdkhyperledgerfabricnetworkhyperledgerfabricnodeconfigurelogging) | Configure logging for the node via SDK call; |
+| [`fetchData`](#cdklabscdkhyperledgerfabricnetworkhyperledgerfabricnodefetchdata) | Populate the output properties that must be fetched via SDK call; |
 
 ---
 
@@ -485,7 +485,7 @@ public fetchData(dataSdkCallPolicy: AwsCustomResourcePolicy)
 
 | **Name** | **Description** |
 | --- | --- |
-| [`constructNodes`](#cdklabscdkhyperledgerfabricnetworkhyperledgerfabricnodeconstructnodes) | *No description.* |
+| [`constructNodes`](#cdklabscdkhyperledgerfabricnetworkhyperledgerfabricnodeconstructnodes) | Build out a list of HyperledgerFabricNode constructs given a list of input property objects; |
 
 ---
 
@@ -1114,6 +1114,8 @@ User ID to register with CA.
 
 ---
 
+Define which Hyperledger Fabric framework to use.
+
 #### `VERSION_1_2` <a name="@cdklabs/cdk-hyperledger-fabric-network.FrameworkVersion.VERSION_1_2" id="cdklabscdkhyperledgerfabricnetworkframeworkversionversion12"></a>
 
 ---
@@ -1219,6 +1221,8 @@ Supported instance types for Managed Blockchain nodes.
 
 ---
 
+Starter networks are cheaper, but are limited to 2 nodes that can only be from a subset of types (see node.ts for the list).
+
 #### `STARTER` <a name="@cdklabs/cdk-hyperledger-fabric-network.NetworkEdition.STARTER" id="cdklabscdkhyperledgerfabricnetworknetworkeditionstarter"></a>
 
 ---
@@ -1237,6 +1241,8 @@ Supported instance types for Managed Blockchain nodes.
 | [`GREATER_THAN_OR_EQUAL_TO`](#cdklabscdkhyperledgerfabricnetworkthresholdcomparatorgreaterthanorequalto) | *No description.* |
 
 ---
+
+Constants to define ties in voting for new members.
 
 #### `GREATER_THAN` <a name="@cdklabs/cdk-hyperledger-fabric-network.ThresholdComparator.GREATER_THAN" id="cdklabscdkhyperledgerfabricnetworkthresholdcomparatorgreaterthan"></a>
 

@@ -15,7 +15,7 @@ import * as user from './user';
 import * as utilities from './utilities';
 
 
-/*
+/**
  * Define which Hyperledger Fabric framework to use
  */
 export enum FrameworkVersion {
@@ -24,7 +24,7 @@ export enum FrameworkVersion {
   VERSION_2_2 = '2.2',
 }
 
-/*
+/**
  * Starter networks are cheaper, but are limited to 2 nodes that
  * can only be from a subset of types (see node.ts for the list)
  */
@@ -33,7 +33,7 @@ export enum NetworkEdition {
   STANDARD = 'STANDARD',
 }
 
-/*
+/**
  * Constants to define ties in voting for new members
  */
 export enum ThresholdComparator {
