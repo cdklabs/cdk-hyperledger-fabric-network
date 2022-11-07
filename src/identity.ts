@@ -13,6 +13,7 @@ import * as constructs from 'constructs';
 
 import * as network from './network';
 import * as utilities from './utilities';
+import { Architecture } from 'aws-cdk-lib/aws-lambda';
 
 /**
  * Creates custom resources to enroll admin and register user
@@ -113,6 +114,7 @@ export class HyperledgerFabricIdentity extends constructs.Construct {
       vpc: client.vpc,
       vpcSubnets: client.vpc.selectSubnets(),
       timeout: cdk.Duration.minutes(1),
+      architecture: Architecture.ARM_64,
     });
 
     // Port range to access the Network
@@ -145,6 +147,7 @@ export class HyperledgerFabricIdentity extends constructs.Construct {
       vpc: client.vpc,
       vpcSubnets: client.vpc.selectSubnets(),
       timeout: cdk.Duration.minutes(1),
+      architecture: Architecture.ARM_64,
     });
 
     // Add access to the lambda for the Network ports
