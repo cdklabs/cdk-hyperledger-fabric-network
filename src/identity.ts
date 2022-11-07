@@ -7,13 +7,13 @@ import * as cdk from 'aws-cdk-lib';
 import * as ec2 from 'aws-cdk-lib/aws-ec2';
 import * as iam from 'aws-cdk-lib/aws-iam';
 import * as lambda from 'aws-cdk-lib/aws-lambda';
+import { Architecture } from 'aws-cdk-lib/aws-lambda';
 import * as logs from 'aws-cdk-lib/aws-logs';
 import * as customresources from 'aws-cdk-lib/custom-resources';
 import * as constructs from 'constructs';
 
 import * as network from './network';
 import * as utilities from './utilities';
-import { Architecture } from 'aws-cdk-lib/aws-lambda';
 
 /**
  * Creates custom resources to enroll admin and register user
