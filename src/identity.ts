@@ -76,7 +76,7 @@ export class HyperledgerFabricIdentity extends constructs.Construct {
     // Have to use docker local bundling as esbuild doesn't resolve the path on the fabric-proto package
     const codeProp = {
       bundling: {
-        image: lambda.Runtime.NODEJS_14_X.bundlingImage,
+        image: lambda.Runtime.NODEJS_16_X.bundlingImage,
         command: [
           'bash', '-c', 'cp -a . /asset-output',
           'npm install --prefix /asset-output',
@@ -98,7 +98,7 @@ export class HyperledgerFabricIdentity extends constructs.Construct {
 
     // Lambda function to enroll the admin and import credentials to secrets manager.
     const adminFunction = new lambda.Function(this, 'AdminFunction', {
-      runtime: lambda.Runtime.NODEJS_14_X,
+      runtime: lambda.Runtime.NODEJS_16_X,
       handler: 'enroll-admin.handler',
       code: lambda.Code.fromAsset(path.join(__dirname, lambdaDirectory), codeProp),
       environment: {
@@ -130,7 +130,7 @@ export class HyperledgerFabricIdentity extends constructs.Construct {
     // Lambda function to register and enroll users and
     // import credentials to secrets manager.
     const userFunction = new lambda.Function(scope, 'UserFunction', {
-      runtime: lambda.Runtime.NODEJS_14_X,
+      runtime: lambda.Runtime.NODEJS_16_X,
       handler: 'register-user.handler',
       code: lambda.Code.fromAsset(path.join(__dirname, lambdaDirectory), codeProp),
       environment: {
