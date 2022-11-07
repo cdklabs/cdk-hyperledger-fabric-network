@@ -3,6 +3,7 @@
 
 import { execSync } from 'child_process';
 import * as path from 'path';
+import { TypeScriptCode } from '@mrgrain/cdk-esbuild';
 import * as cdk from 'aws-cdk-lib';
 import * as ec2 from 'aws-cdk-lib/aws-ec2';
 import * as iam from 'aws-cdk-lib/aws-iam';
@@ -14,6 +15,7 @@ import * as constructs from 'constructs';
 
 import * as network from './network';
 import * as utilities from './utilities';
+
 
 /**
  * Creates custom resources to enroll admin and register user
@@ -101,7 +103,7 @@ export class HyperledgerFabricIdentity extends constructs.Construct {
     const adminFunction = new lambda.Function(this, 'AdminFunction', {
       runtime: lambda.Runtime.NODEJS_16_X,
       handler: 'enroll-admin.handler',
-      code: lambda.Code.fromAsset(path.join(__dirname, lambdaDirectory), codeProp),
+      code: new TypeScriptCode(path.join(__dirname, lambdaDirectory)),
       environment: {
         ADMIN_PASSWORD_ARN: adminPasswordArn,
         CA_ENDPOINT: caEndpoint,
@@ -134,7 +136,7 @@ export class HyperledgerFabricIdentity extends constructs.Construct {
     const userFunction = new lambda.Function(scope, 'UserFunction', {
       runtime: lambda.Runtime.NODEJS_16_X,
       handler: 'register-user.handler',
-      code: lambda.Code.fromAsset(path.join(__dirname, lambdaDirectory), codeProp),
+      code: new TypeScriptCode(path.join(__dirname, lambdaDirectory)),
       environment: {
         CA_ENDPOINT: caEndpoint,
         MEMBER_NAME: memberName,
