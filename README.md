@@ -1,11 +1,11 @@
 # Hyperledger Fabric on Amazon Managed Blockchain
 
-![license](https://img.shields.io/github/license/cdklabs/cdk-hyperledger-fabric-network?color=green)
-![release](https://img.shields.io/github/v/release/cdklabs/cdk-hyperledger-fabric-network?color=green)
-![npm:version](https://img.shields.io/npm/v/@cdklabs/cdk-hyperledger-fabric-network?color=blue)
-![PyPi:version](https://img.shields.io/pypi/v/cdklabs.cdk-hyperledger-fabric-network?color=blue)
-![Maven:version](https://img.shields.io/maven-central/v/io.github.cdklabs/cdk-hyperledger-fabric-network?color=blue&label=maven)
-![NuGet:version](https://img.shields.io/nuget/v/Cdklabs.CdkHyperledgerFabricNetwork?color=blue)
+[![license](https://img.shields.io/github/license/cdklabs/cdk-hyperledger-fabric-network?color=green)](https://opensource.org/licenses/MIT)
+[![release](https://img.shields.io/github/v/release/cdklabs/cdk-hyperledger-fabric-network?color=green)](https://github.com/cdklabs/cdk-hyperledger-fabric-network/releases)
+[![npm:version](https://img.shields.io/npm/v/@cdklabs/cdk-hyperledger-fabric-network?color=blue)](https://www.npmjs.com/package/@cdklabs/cdk-hyperledger-fabric-network)
+[![PyPi:version](https://img.shields.io/pypi/v/cdklabs.cdk-hyperledger-fabric-network?color=blue)](https://pypi.org/project/cdklabs.cdk-hyperledger-fabric-network/)
+[![Maven:version](https://img.shields.io/maven-central/v/io.github.cdklabs/cdk-hyperledger-fabric-network?color=blue&label=maven)](https://central.sonatype.dev/artifact/io.github.cdklabs/cdk-hyperledger-fabric-network/0.8.147)
+[![NuGet:version](https://img.shields.io/nuget/v/Cdklabs.CdkHyperledgerFabricNetwork?color=blue)](https://www.nuget.org/packages/Cdklabs.CdkHyperledgerFabricNetwork)
 
 This repository contains a CDK construct to deploy a Hyperledger Fabric network
 running on Amazon Managed Blockchain. It builds out a member and its nodes, a VPC
