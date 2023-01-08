@@ -1483,10 +1483,10 @@ case@1.6.3, case@^1.6.3:
   resolved "https://registry.yarnpkg.com/case/-/case-1.6.3.tgz#0a4386e3e9825351ca2e6216c60467ff5f1ea1c9"
   integrity sha512-mzDSXIPaFwVDvZAHqZ9VlbyF4yyXRuX6IvB06WvPYkqJVO24kX1PPhv9bfpKNFZyxYFmmgo03HUiD8iklmJYRQ==
 
-cdk-nag@2.21.53:
-  version "2.21.53"
-  resolved "https://registry.yarnpkg.com/cdk-nag/-/cdk-nag-2.21.53.tgz#c5587b54415b8cd5d58174d63c9926273ff0b95e"
-  integrity sha512-l9b31B4T/5Z09z3TLQZL4woT4FG7K7GLImNkOWVKlE04lbOOdwvSQwYNXiI35iRyMqPIbEDHAFBXZW8M2xXDsQ==
+cdk-nag@2.21.54:
+  version "2.21.54"
+  resolved "https://registry.yarnpkg.com/cdk-nag/-/cdk-nag-2.21.54.tgz#e4d142f8beb83e59776a07c6fa6e854cc228df05"
+  integrity sha512-tvyhpKjUgvR5zXRjeduni2IV063unNc47vS5ITDw/h9zAgoxYglYg7+2fz0lYEw7IU+k8+gSP1FqIKMPtlhDXg==
 
 chalk@^2.0.0, chalk@^2.4.2:
   version "2.4.2"
@@ -1622,9 +1622,9 @@ combined-stream@^1.0.8:
     delayed-stream "~1.0.0"
 
 commander@^9.4.1:
-  version "9.4.1"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-9.4.1.tgz#d1dd8f2ce6faf93147295c0df13c7c21141cfbdd"
-  integrity sha512-5EEkTNyHNGFPD2H+c/dXXfQZYa/scCKasxWcXJaWnNJ99pnQN9Vnmqow+p+PlFPE63Q6mThaZws1T+HxfpgtPw==
+  version "9.5.0"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-9.5.0.tgz#bc08d1eb5cedf7ccb797a96199d41c7bc3e60d30"
+  integrity sha512-KRs7WVDKg86PWiuAqhDrAQnTXZKraVcCc6vFdL14qrZ/DcWwuRo7VoiYXalXO7S5GKpqYiVEwCbgFDfxNHKJBQ==
 
 comment-json@4.2.2:
   version "4.2.2"
