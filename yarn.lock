@@ -1494,10 +1494,10 @@ case@1.6.3, case@^1.6.3:
   resolved "https://registry.yarnpkg.com/case/-/case-1.6.3.tgz#0a4386e3e9825351ca2e6216c60467ff5f1ea1c9"
   integrity sha512-mzDSXIPaFwVDvZAHqZ9VlbyF4yyXRuX6IvB06WvPYkqJVO24kX1PPhv9bfpKNFZyxYFmmgo03HUiD8iklmJYRQ==
 
-cdk-nag@2.22.9:
-  version "2.22.9"
-  resolved "https://registry.yarnpkg.com/cdk-nag/-/cdk-nag-2.22.9.tgz#b2d52ef41cdc9e851e8cb0a19438b3d5466e8ab1"
-  integrity sha512-CiavvebyeFO4ndkRlxxesK5oAnVfsUIB1Z+0vqKn7ENm7EOp1K6yNFsbVhFjqunWYGbM/CEuXVR0uDUjMvsuqg==
+cdk-nag@2.22.10:
+  version "2.22.10"
+  resolved "https://registry.yarnpkg.com/cdk-nag/-/cdk-nag-2.22.10.tgz#4dc02e9e702c48e0f62e2c0f1485b15d5d2b0efe"
+  integrity sha512-ceixJbN3eMa+OMxikEpmiuyweZQIB1QVKPUgduc090wEpe63FsOKFV3hL7IsmgTziBwz2es/PKw4Mj8vnssxPQ==
 
 chalk@^2.0.0, chalk@^2.4.2:
   version "2.4.2"
@@ -5045,10 +5045,10 @@ progress@^2.0.3:
   resolved "https://registry.yarnpkg.com/progress/-/progress-2.0.3.tgz#7e8cf8d8f5b8f239c1bc68beb4eb78567d572ef8"
   integrity sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==
 
-projen@^0.67.58:
-  version "0.67.58"
-  resolved "https://registry.yarnpkg.com/projen/-/projen-0.67.58.tgz#1cd76a385825f8b0e3fdeab5f499c154fa77b8ce"
-  integrity sha512-Y7+pd7wv/G/Wn2rS0IJbVZTmUqIegvmUDF8HNoIWIx9Xem1+KBXLaYePdbmH31ovjNDLIFr5MyvVp27FHSVDoA==
+projen@^0.67.59:
+  version "0.67.59"
+  resolved "https://registry.yarnpkg.com/projen/-/projen-0.67.59.tgz#1980bf85b1abc802f09c63642afbd8fc8837cf59"
+  integrity sha512-cBn/1sNKefHODxWyd7L6BB8vHlPd7CQTcAPD1c3w4zFPxL2+jMdXAqLxB+soJ1B3L7bxbJeBJgiV+OXudY/J2A==
   dependencies:
     "@iarna/toml" "^2.2.5"
     case "^1.6.3"
