@@ -40,7 +40,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   },
   publishToMaven: {
     javaPackage: 'io.github.cdklabs.cdkhyperledgerfabricnetwork',
-    mavenEndpoint: 'https://s01.oss.sonatype.org',
+    mavenServerId: 'central-ossrh',
     mavenArtifactId: 'cdk-hyperledger-fabric-network',
     mavenGroupId: 'io.github.cdklabs',
   },
