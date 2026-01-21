@@ -95,7 +95,7 @@ new HyperledgerFabricNetwork(this, 'Example', {
   networkName: 'MyNetwork',
   networkDescription: 'This is my Hyperledger Fabric network',
   memberName: 'MyMember',
-  networkDescription: 'This is my Hyperledger Fabric member',
+  memberDescription: 'This is my Hyperledger Fabric member',
   frameworkVersion: hyperledger.FrameworkVersion.VERSION_1_2,
   proposalDurationInHours: 48,
   thresholdPercentage: 75,
