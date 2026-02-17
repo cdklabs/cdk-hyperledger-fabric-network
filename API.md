@@ -45,6 +45,7 @@ new HyperledgerFabricClient(scope: HyperledgerFabricNetwork, id: string, props?:
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#@cdklabs/cdk-hyperledger-fabric-network.HyperledgerFabricClient.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#@cdklabs/cdk-hyperledger-fabric-network.HyperledgerFabricClient.with">with</a></code> | Applies one or more mixins to this construct. |
 
 ---
 
@@ -55,6 +56,27 @@ public toString(): string
 ```
 
 Returns a string representation of this construct.
+
+##### `with` <a name="with" id="@cdklabs/cdk-hyperledger-fabric-network.HyperledgerFabricClient.with"></a>
+
+```typescript
+public with(mixins: ...IMixin[]): IConstruct
+```
+
+Applies one or more mixins to this construct.
+
+Mixins are applied in order. The list of constructs is captured at the
+start of the call, so constructs added by a mixin will not be visited.
+Use multiple `with()` calls if subsequent mixins should apply to added
+constructs.
+
+###### `mixins`<sup>Required</sup> <a name="mixins" id="@cdklabs/cdk-hyperledger-fabric-network.HyperledgerFabricClient.with.parameter.mixins"></a>
+
+- *Type:* ...constructs.IMixin[]
+
+The mixins to apply.
+
+---
 
 #### Static Functions <a name="Static Functions" id="Static Functions"></a>
 
@@ -186,6 +208,7 @@ new HyperledgerFabricNetwork(scope: Construct, id: string, props: HyperledgerFab
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#@cdklabs/cdk-hyperledger-fabric-network.HyperledgerFabricNetwork.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#@cdklabs/cdk-hyperledger-fabric-network.HyperledgerFabricNetwork.with">with</a></code> | Applies one or more mixins to this construct. |
 
 ---
 
@@ -196,6 +219,27 @@ public toString(): string
 ```
 
 Returns a string representation of this construct.
+
+##### `with` <a name="with" id="@cdklabs/cdk-hyperledger-fabric-network.HyperledgerFabricNetwork.with"></a>
+
+```typescript
+public with(mixins: ...IMixin[]): IConstruct
+```
+
+Applies one or more mixins to this construct.
+
+Mixins are applied in order. The list of constructs is captured at the
+start of the call, so constructs added by a mixin will not be visited.
+Use multiple `with()` calls if subsequent mixins should apply to added
+constructs.
+
+###### `mixins`<sup>Required</sup> <a name="mixins" id="@cdklabs/cdk-hyperledger-fabric-network.HyperledgerFabricNetwork.with.parameter.mixins"></a>
+
+- *Type:* ...constructs.IMixin[]
+
+The mixins to apply.
+
+---
 
 #### Static Functions <a name="Static Functions" id="Static Functions"></a>
 
@@ -587,6 +631,7 @@ new HyperledgerFabricNode(scope: HyperledgerFabricNetwork, id: string, props?: H
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#@cdklabs/cdk-hyperledger-fabric-network.HyperledgerFabricNode.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#@cdklabs/cdk-hyperledger-fabric-network.HyperledgerFabricNode.with">with</a></code> | Applies one or more mixins to this construct. |
 | <code><a href="#@cdklabs/cdk-hyperledger-fabric-network.HyperledgerFabricNode.configureLogging">configureLogging</a></code> | Configure logging for the node via SDK call; |
 | <code><a href="#@cdklabs/cdk-hyperledger-fabric-network.HyperledgerFabricNode.fetchData">fetchData</a></code> | Populate the output properties that must be fetched via SDK call; |
 
@@ -599,6 +644,27 @@ public toString(): string
 ```
 
 Returns a string representation of this construct.
+
+##### `with` <a name="with" id="@cdklabs/cdk-hyperledger-fabric-network.HyperledgerFabricNode.with"></a>
+
+```typescript
+public with(mixins: ...IMixin[]): IConstruct
+```
+
+Applies one or more mixins to this construct.
+
+Mixins are applied in order. The list of constructs is captured at the
+start of the call, so constructs added by a mixin will not be visited.
+Use multiple `with()` calls if subsequent mixins should apply to added
+constructs.
+
+###### `mixins`<sup>Required</sup> <a name="mixins" id="@cdklabs/cdk-hyperledger-fabric-network.HyperledgerFabricNode.with.parameter.mixins"></a>
+
+- *Type:* ...constructs.IMixin[]
+
+The mixins to apply.
+
+---
 
 ##### `configureLogging` <a name="configureLogging" id="@cdklabs/cdk-hyperledger-fabric-network.HyperledgerFabricNode.configureLogging"></a>
 
@@ -876,6 +942,7 @@ new HyperledgerFabricUser(scope: HyperledgerFabricNetwork, id: string, props: Hy
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#@cdklabs/cdk-hyperledger-fabric-network.HyperledgerFabricUser.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#@cdklabs/cdk-hyperledger-fabric-network.HyperledgerFabricUser.with">with</a></code> | Applies one or more mixins to this construct. |
 
 ---
 
@@ -886,6 +953,27 @@ public toString(): string
 ```
 
 Returns a string representation of this construct.
+
+##### `with` <a name="with" id="@cdklabs/cdk-hyperledger-fabric-network.HyperledgerFabricUser.with"></a>
+
+```typescript
+public with(mixins: ...IMixin[]): IConstruct
+```
+
+Applies one or more mixins to this construct.
+
+Mixins are applied in order. The list of constructs is captured at the
+start of the call, so constructs added by a mixin will not be visited.
+Use multiple `with()` calls if subsequent mixins should apply to added
+constructs.
+
+###### `mixins`<sup>Required</sup> <a name="mixins" id="@cdklabs/cdk-hyperledger-fabric-network.HyperledgerFabricUser.with.parameter.mixins"></a>
+
+- *Type:* ...constructs.IMixin[]
+
+The mixins to apply.
+
+---
 
 #### Static Functions <a name="Static Functions" id="Static Functions"></a>
 
